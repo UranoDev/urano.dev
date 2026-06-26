@@ -1,0 +1,40 @@
+[33mcommit 61ba4d41403c37e9737939bcbc689718b7581b38[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Urano Dev <u@urano.dev>
+Date:   Thu Jun 25 19:29:52 2026 -0600
+
+    Botón de WhatsApp y componente para servicios en BD
+
+[33mcommit 8439498fc6c5d668d68f5a7e4e160d21b671d016[m
+Author: Urano Dev <u@urano.dev>
+Date:   Thu Jun 25 19:01:15 2026 -0600
+
+    feat: whatsapp-floating-button + navigation-cleanup + services-pages
+    
+    - Componente flotante WhatsApp en todas las páginas con mensaje prefijado
+    - CTAs de contacto redirigen directamente a WhatsApp
+    - Navegación limpia: ocultados Pricing e Ideas, "Iniciar sesión" → "Acceder"
+    - Menú público traducido al español (Inicio, Blog, Nosotros, Links)
+    - Páginas de servicios: modelo Service, migración, seeder con 6 servicios,
+      vistas /servicios y /servicios/{slug}, home actualizado con cards de servicios
+    - SlugService: agregados "blog" y "servicios" a rutas reservadas
+    - 238/238 tests pasan
+    
+    Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+[33mcommit d9a1db08cdf204349bf69383c41397e72896c924[m
+Author: Urano Dev <u@urano.dev>
+Date:   Thu Jun 25 14:40:16 2026 -0600
+
+    Copy actualizado en home page
+
+[33mcommit 14c7b9026b8a2fb5c633d22f4e481b861d7e0a6f[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m
+Author: Urano Dev <u@urano.dev>
+Date:   Thu Jun 11 22:23:55 2026 -0600
+
+    Públic Release 1.0
+
+[33mcommit fcc6aef4c0ed7fa33c0495cd043e70b5a11089c0[m
+Author: Urano Dev <u@urano.dev>
+Date:   Thu Jun 11 00:21:01 2026 -0600
+
+    Version con CRUD para POST
