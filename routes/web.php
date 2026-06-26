@@ -3,7 +3,10 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LinkClickController;
 use App\Http\Controllers\OAuthController;
-use App\Http\Controllers\ServiceController;use App\Models\Link;
+use App\Http\Controllers\ServiceController;
+use App\Enums\Role;
+use App\Models\Link;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth/google')->name('auth.google.')->group(function () {
@@ -31,7 +34,11 @@ Route::get('/', function () {
 Route::livewire('ideas', 'pages::ideas.public')->name('ideas.public');
 
 Route::get('/nosotros', function () {
-    return view('about');
+    $team = User::whereIn('role', [Role::Admin, Role::Author])
+        ->where('is_active', true)
+        ->get();
+
+    return view('about', compact('team'));
 })->name('nosotros');
 Route::get('/pricing', function () {
     return view('pricing');
