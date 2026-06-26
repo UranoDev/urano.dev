@@ -16,6 +16,7 @@ class BlogController extends Controller
 
         return view('blog.index', compact('posts'));
     }
+
     public function show(string $slug)
     {
         $post = Post::where('slug', $slug)

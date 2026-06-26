@@ -60,8 +60,15 @@ class PostStaticGenerator
      */
     protected function wrapInLayout(Post $post, string $content): string
     {
-        return view('blog.post-static', [
+        $html = view('blog.post-static', [
             'post' => $post,
             'content' => $content,
-        ])->render();    }
+        ])->render();
+
+        // Convierte URLs absolutas locales a rutas relativas a la raíz
+        // para que el HTML estático funcione en cualquier dominio y protocolo.
+        $localRoot = rtrim(url('/'), '/');
+
+        return str_replace($localRoot, '', $html);
+    }
 }
