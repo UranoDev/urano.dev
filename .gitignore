@@ -61,3 +61,6 @@ claude.md
 /tests/Browser/Screenshots
 
 limpia.ps1
+
+# Config local de YouTrack: puede contener un token permanente.
+/.ralph
