@@ -17,7 +17,8 @@ class EnsureHasDashboardAccess
     {
         $user = auth()->user();
 
-        if ($user->isVisitor() || ! $user->is_active) {            return redirect()->route('home');
+        if ($user->isVisitor() || ! $user->is_active) {
+            return redirect()->route('home');
         }
 
         return $next($request);

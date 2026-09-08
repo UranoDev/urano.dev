@@ -3,6 +3,7 @@
 use App\Models\Link;
 use App\Models\LinkClick;
 use App\Models\Post;
+
 test('hacer click en un link activo registra el click en la BD', function () {
     $link = Link::factory()->external()->create([
         'url' => 'https://example.com',

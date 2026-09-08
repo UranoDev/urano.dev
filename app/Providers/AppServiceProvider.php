@@ -6,7 +6,8 @@ use App\Models\Post;
 use App\Observers\PostObserver;
 use App\View\Components\Layouts\App;
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Blade;use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -30,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
 
         Post::observe(PostObserver::class);
 
-        Blade::component('layouts.app', App::class);    }
+        Blade::component('layouts.app', App::class);
+    }
 
     /**
      * Configure default behaviors for production-ready applications.

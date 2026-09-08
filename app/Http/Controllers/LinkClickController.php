@@ -18,6 +18,7 @@ class LinkClickController
         ]);
 
         $destination = $link->getResolvedUrl() ?? route('home');
+
         return redirect()->away($destination);
     }
 }

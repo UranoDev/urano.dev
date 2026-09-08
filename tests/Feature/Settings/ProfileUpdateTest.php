@@ -2,7 +2,8 @@
 
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;use Livewire\Livewire;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Livewire;
 
 test('profile page is displayed', function () {
     $this->actingAs($user = User::factory()->create());

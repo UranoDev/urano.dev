@@ -73,7 +73,8 @@ test('un administrador inactivo es redirigido al home al intentar acceder al das
 
     $this->actingAs($admin)
         ->get(route('dashboard'))
-        ->assertRedirect(route('home'));});
+        ->assertRedirect(route('home'));
+});
 
 test('el dashboard muestra el link de Dashboard para todos los roles con acceso', function () {
     foreach ([User::factory()->author()->create(), User::factory()->admin()->create()] as $user) {

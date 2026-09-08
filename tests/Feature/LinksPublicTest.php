@@ -2,6 +2,7 @@
 
 use App\Models\Link;
 use App\Models\User;
+
 test('la pagina publica de links es accesible sin autenticacion', function () {
     $this->get(route('links.public'))
         ->assertOk();

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['title', 'url', 'type', 'post_id', 'sort_order', 'is_active', 'user_id'])]class Link extends Model
+#[Fillable(['title', 'url', 'type', 'post_id', 'sort_order', 'is_active', 'user_id'])] class Link extends Model
 {
     /** @use HasFactory<LinkFactory> */
     use HasFactory;
@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     /**
      * @return array<string, string>
      */
@@ -50,6 +51,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
         return $this->url;
     }
+
     public function isExternal(): bool
     {
         return $this->type === LinkType::External;

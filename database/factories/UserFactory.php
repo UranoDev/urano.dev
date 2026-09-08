@@ -86,4 +86,5 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'is_active' => false,
         ]);
-    }}
+    }
+}

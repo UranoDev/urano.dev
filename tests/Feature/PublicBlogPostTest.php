@@ -3,7 +3,8 @@
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
-use App\Services\PostStaticGenerator;use Illuminate\Support\Facades\File;
+use App\Services\PostStaticGenerator;
+use Illuminate\Support\Facades\File;
 
 test('it displays a published post from its static html file', function () {
     $user = User::factory()->create();

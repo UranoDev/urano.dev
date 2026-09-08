@@ -15,6 +15,7 @@ class App extends Component
         public bool $isStatic = false,
         public ?string $whatsappUrl = null,
     ) {}
+
     /**
      * Get the view / contents that represent the component.
      */

@@ -3,7 +3,8 @@
 use App\Enums\LinkType;
 use App\Models\Link;
 use App\Models\LinkClick;
-use App\Models\Post;use App\Models\User;
+use App\Models\Post;
+use App\Models\User;
 use Livewire\Livewire;
 
 // --- Acceso ---
@@ -68,7 +69,7 @@ test('un administrador puede crear un link interno', function () {
         ->call('openCreate')
         ->set('title', 'Post interno')
         ->set('type', 'internal')
-        ->set('postId', $post->id)        ->call('save');
+        ->set('postId', $post->id)->call('save');
 
     $this->assertDatabaseHas('links', [
         'title' => 'Post interno',

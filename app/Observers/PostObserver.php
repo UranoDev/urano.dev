@@ -37,7 +37,8 @@ class PostObserver
 
             // Evitar bucle infinito al actualizar el static_path
             $post->withoutEvents(function () use ($post) {
-                $post->load('tags', 'author');                $staticPath = $this->generator->generate($post);
+                $post->load('tags', 'author');
+                $staticPath = $this->generator->generate($post);
                 $post->static_path = $staticPath;
                 $post->save();
             });
