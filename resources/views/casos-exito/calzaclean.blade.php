@@ -45,13 +45,13 @@
 
     {{-- 1. El diagnóstico y el método --}}
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
-        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Bloque 1</span>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">El diagnóstico y el método</h2>
+        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Dónde estaba el negocio</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">El punto de partida</h2>
 
         <p class="text-base text-frost-muted max-w-2xl leading-relaxed mb-10">
-            El proyecto no empezó con un diseño: empezó midiendo los perfiles públicos del negocio.
-            Estas son las cifras del 6 de septiembre de 2026, la línea base contra la que se compara
-            todo lo que venga después.
+            El proyecto no empezó con un diseño: empezó midiendo. Estas son las cifras del 6 de
+            septiembre de 2026 — la línea base contra la que se mide todo lo que venga después, y la
+            razón por la que las decisiones que siguieron se pueden defender con datos.
         </p>
 
         <div class="overflow-x-auto border border-frost-border bg-white">
@@ -90,78 +90,11 @@
             Medido el 6 de septiembre de 2026 sobre los perfiles públicos del negocio.
         </p>
 
-        <div class="mt-16">
-            <h3 class="text-2xl font-bold tracking-tight">Tres decisiones y cómo se tomaron</h3>
-            <p class="text-sm text-frost-muted max-w-2xl leading-relaxed mt-2 mb-8">
-                Cada una se cuenta en tres movimientos: qué restricción manda, qué se hizo para
-                resolverla —de forma que otro pudiera repetirlo— y qué salió, con su número o su
-                regla. Fueron veintitantas decisiones; estas tres muestran el método.
-            </p>
-
-            <x-caso.decision titulo="La paleta salió del logo, no de una propuesta nueva">
-                <x-slot:estrategia>
-                    No rediseñar la identidad. El logo llevaba diez meses acumulando reconocimiento y
-                    el presupuesto rendía más en otra parte, así que la paleta tenía que salir del
-                    logo, no reemplazarlo.
-                </x-slot:estrategia>
-
-                <x-slot:proceso>
-                    Muestrear los colores del archivo original con un gotero, en vez de estimarlos a
-                    ojo. Medir cada uno contra blanco con la fórmula de contraste de WCAG.
-                </x-slot:proceso>
-
-                <x-slot:resultado>
-                    Azul <span class="font-mono">#214966</span> y azul claro
-                    <span class="font-mono">#6FAFDE</span>, muestreados el 6 de septiembre de 2026.
-                    El profundo da 9.5:1 contra blanco y sirve como color de texto sin ayuda. El claro
-                    da 2.4:1, muy por debajo del mínimo, así que quedó restringido a rellenos, bordes
-                    e iconos. Esa restricción se convirtió después en una prueba automatizada: si
-                    alguien lo usa como texto, la suite falla.
-                </x-slot:resultado>
-            </x-caso.decision>
-
-            <x-caso.decision titulo="La lista de precios se revisó antes de maquetarla">
-                <x-slot:estrategia>
-                    Publicar la lista completa sin que ningún renglón se contradiga, porque un precio
-                    confuso se descuenta en el mostrador.
-                </x-slot:estrategia>
-
-                <x-slot:proceso>
-                    Revisar el catálogo renglón por renglón contra el resto antes de maquetarlo.
-                </x-slot:proceso>
-
-                <x-slot:resultado>
-                    Dos hallazgos: la entrega express costaba $100 cuando la limpieza básica costaba
-                    $120 —correr más rápido salía más barato que el servicio normal—, y la limpieza
-                    infantil no tenía precio. Se corrigieron antes de publicar: el express pasó a
-                    escribirse como <span class="font-mono">+$100</span> sobre el servicio, y la
-                    infantil quedó en $100.
-                </x-slot:resultado>
-            </x-caso.decision>
-
-            <x-caso.decision titulo="Qué puede editar la dueña, y qué no">
-                <x-slot:estrategia>
-                    Que el negocio no dependa del desarrollador para lo que cambia seguido, sin poder
-                    romper lo que no debería tocar.
-                </x-slot:estrategia>
-
-                <x-slot:proceso>
-                    Separar el contenido por frecuencia de cambio: las fotos cambian cada semana, los
-                    precios una o dos veces al año, los textos de las secciones casi nunca.
-                </x-slot:proceso>
-
-                <x-slot:resultado>
-                    La regla que ordenó todo el panel: editable es lo que cambia seguido. Cuatro
-                    pantallas para lo que cambia; el resto se cambia con una entrega. Un panel que
-                    deja editar todo es cómo se descuadra un sitio.
-                </x-slot:resultado>
-            </x-caso.decision>
-        </div>
     </section>
 
     {{-- 2. Las secciones y páginas reales --}}
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
-        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Bloque 2</span>
+        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Qué se construyó</span>
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">Las secciones y páginas reales</h2>
 
         <p class="text-base text-frost-muted max-w-2xl leading-relaxed mb-10">
@@ -222,7 +155,7 @@
 
     {{-- 3. Las acciones que el negocio tiene que seguir --}}
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
-        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Bloque 3</span>
+        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Qué sigue</span>
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">Las acciones que el negocio tiene que seguir</h2>
 
         <p class="text-base text-frost-muted max-w-2xl leading-relaxed mb-10">

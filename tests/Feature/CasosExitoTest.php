@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\View\ViewException;
 
 uses(RefreshDatabase::class);
 
@@ -20,28 +18,6 @@ test('el caso de CalzaClean responde y cierra el enlace de la firma', function (
     $response->assertOk();
     $response->assertSee('CalzaClean');
 });
-
-test('el caso cuenta cada decisión en sus tres movimientos', function () {
-    $response = $this->get(route('casos-exito.show', 'calzaclean'));
-
-    $response->assertOk();
-
-    $html = $response->getContent();
-
-    // Se cuentan las etiquetas que dibuja el componente, no la palabra suelta:
-    // «Resultados» es también el nombre de una sección del sitio del cliente.
-    expect(substr_count($html, 'Estrategia</dt>'))->toBe(3)
-        ->and(substr_count($html, 'Proceso</dt>'))->toBe(3)
-        ->and(substr_count($html, 'Resultado</dt>'))->toBe(3);
-});
-
-test('una decisión sin los tres movimientos no se puede dibujar', function () {
-    Blade::render(<<<'BLADE'
-        <x-caso.decision titulo="Una decisión a medias">
-            <x-slot:resultado>Quedó bonito.</x-slot:resultado>
-        </x-caso.decision>
-    BLADE);
-})->throws(ViewException::class, 'no tiene Estrategia');
 
 test('el caso presenta la auditoría con su fecha', function () {
     $response = $this->get(route('casos-exito.show', 'calzaclean'));
