@@ -17,11 +17,9 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="https://wa.me/{{ config('services.whatsapp.number') }}?text={{ urlencode('quiero saber más de ' . request()->url()) }}"
-                       target="_blank"
-                       rel="noopener noreferrer"
+                    <a href="{{ route('contact') }}"
                        class="bg-frost-dark text-white font-semibold text-sm px-6 py-3 hover:bg-opacity-90 transition text-center">
-                        Solicitar Cotización
+                        Cuéntanos qué quieres construir
                     </a>
 
                     <a href="{{ route('services.index') }}"
@@ -96,8 +94,8 @@
     <section class="max-w-6xl mx-auto px-fluid-sm py-8">
         <x-frost.cta
             title="¿Listo para automatizar las reservaciones y operaciones de tu negocio?"
-            buttonText="Hablemos de tu proyecto"
-            :link="'https://wa.me/' . config('services.whatsapp.number') . '?text=' . urlencode('quiero saber más de ' . request()->url())">
+            buttonText="Cuéntanos qué quieres construir"
+            :link="route('contact')">
 
             Ayudamos a PYMEs y empresas turísticas en Tequisquiapan y todo México a conectar reservaciones, cobros y facturación mediante soluciones escalables y seguras.
 

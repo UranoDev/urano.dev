@@ -22,6 +22,7 @@
             <a href="{{ route('blog.index') }}" class="hover:text-frost-muted transition">Blog</a>
             <a href="/nosotros" class="hover:text-frost-muted transition">Nosotros</a>
             <a href="/links" class="hover:text-frost-muted transition">Links</a>
+            <a href="{{ route('contact') }}" class="hover:text-frost-muted transition">Contacto</a>
         </nav>
 
         <div class="flex items-center gap-4">
@@ -73,6 +74,7 @@
         <a href="{{ route('blog.index') }}" class="block text-base font-medium text-frost-dark hover:text-frost-muted transition">Blog</a>
         <a href="/nosotros" class="block text-base font-medium text-frost-dark hover:text-frost-muted transition">Nosotros</a>
         <a href="/links" class="block text-base font-medium text-frost-dark hover:text-frost-muted transition">Links</a>
+        <a href="{{ route('contact') }}" class="block text-base font-medium text-frost-dark hover:text-frost-muted transition">Contacto</a>
 
         <div class="pt-4 border-t border-frost-border flex flex-col gap-3">
             @if ($isStatic ?? false)
@@ -113,6 +115,7 @@
                 <li><a href="/" class="hover:underline">Inicio</a></li>
                 <li><a href="{{ route('blog.index') }}" class="hover:underline">Blog</a></li>
                 <li><a href="/nosotros" class="hover:underline">Nosotros</a></li>
+                <li><a href="{{ route('contact') }}" class="hover:underline">Contacto</a></li>
             </ul>
         </div>
         <div>

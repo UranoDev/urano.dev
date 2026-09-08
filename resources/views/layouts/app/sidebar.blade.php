@@ -65,6 +65,16 @@
                                 {{ __('Usuarios') }}
                             </flux:sidebar.item>
                         @endif
+
+                        @if(Route::has('inquiries.index'))
+                            <flux:sidebar.item icon="inbox" :href="route('inquiries.index')" :current="request()->routeIs('inquiries.*')" wire:navigate>
+                                {{ __('Contactos') }}
+                            </flux:sidebar.item>
+                        @else
+                            <flux:sidebar.item icon="inbox" href="#" data-nav="inquiries">
+                                {{ __('Contactos') }}
+                            </flux:sidebar.item>
+                        @endif
                     </flux:sidebar.group>
                 @endif
             </flux:sidebar.nav>

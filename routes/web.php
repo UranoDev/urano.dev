@@ -1,10 +1,10 @@
 <?php
 
+use App\Enums\Role;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LinkClickController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ServiceController;
-use App\Enums\Role;
 use App\Models\Link;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +24,9 @@ Route::middleware(['auth', 'verified', 'dashboard.access'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::livewire('dashboard/ideas', 'pages::ideas.index')->name('ideas.index');
         Route::livewire('dashboard/links', 'pages::links.index')->name('links.index');
-        Route::livewire('dashboard/users', 'pages::users.index')->name('users.index');    });
+        Route::livewire('dashboard/users', 'pages::users.index')->name('users.index');
+        Route::livewire('dashboard/contactos', 'pages::inquiries.index')->name('inquiries.index');
+    });
 });
 
 Route::get('/', function () {
@@ -32,6 +34,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::livewire('ideas', 'pages::ideas.public')->name('ideas.public');
+
+Route::livewire('contacto', 'pages::contact.index')->name('contact');
 
 Route::get('/nosotros', function () {
     $team = User::whereIn('role', [Role::Admin, Role::Author])
@@ -46,6 +50,7 @@ Route::get('/pricing', function () {
 
 Route::get('/links', function () {
     $links = Link::where('is_active', true)->with('owner')->orderBy('sort_order')->orderBy('id')->get();
+
     return view('links', compact('links'));
 })->name('links.public');
 
