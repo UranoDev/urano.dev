@@ -2,9 +2,11 @@
 
 use App\Enums\Role;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CasoExitoController;
 use App\Http\Controllers\LinkClickController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SitemapController;
 use App\Models\Link;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +62,16 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 
 Route::get('/servicios', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/servicios/{slug}', [ServiceController::class, 'show'])->name('services.show');
+
+Route::get('/casos-exito', [CasoExitoController::class, 'index'])->name('casos-exito.index');
+Route::get('/casos-exito/{proyecto}', [CasoExitoController::class, 'show'])
+    ->where('proyecto', '[a-z0-9-]+')
+    ->name('casos-exito.show');
+
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+
+// El comodín del blog va al final: cualquier ruta propia se registra antes,
+// o queda escondida detrás de él.
 Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 require __DIR__.'/settings.php';

@@ -113,6 +113,8 @@
             <h4 class="text-xs font-bold uppercase tracking-wider text-frost-muted mb-3">Navegación</h4>
             <ul class="space-y-2 text-sm">
                 <li><a href="/" class="hover:underline">Inicio</a></li>
+                <li><a href="{{ route('services.index') }}" class="hover:underline">Servicios</a></li>
+                <li><a href="{{ route('casos-exito.index') }}" class="hover:underline">Casos de éxito</a></li>
                 <li><a href="{{ route('blog.index') }}" class="hover:underline">Blog</a></li>
                 <li><a href="/nosotros" class="hover:underline">Nosotros</a></li>
                 <li><a href="{{ route('contact') }}" class="hover:underline">Contacto</a></li>
