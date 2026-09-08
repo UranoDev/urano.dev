@@ -44,6 +44,10 @@ claude.md
 .*
 !.gitignore
 
+# La version de Node se fija en el repo: el servidor usa nodenv y sin ella
+# npm responde «command not found».
+!.node-version
+
 # En .claude, solo permitir log.md
 # Permitir el directorio .claude
 !.claude/
