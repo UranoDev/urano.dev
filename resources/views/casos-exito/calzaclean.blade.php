@@ -43,6 +43,47 @@
         </dl>
     </section>
 
+    {{-- En qué consistió el servicio --}}
+    <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
+        <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Qué incluyó</span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">El servicio, en cuatro partes</h2>
+
+        <ol class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            <li class="border border-frost-border p-6 bg-white">
+                <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Uno</span>
+                <h3 class="text-lg font-semibold tracking-tight mt-2 mb-3">Evaluación técnica y de marca</h3>
+                <p class="text-sm text-frost-muted leading-relaxed">
+                    Se miden los perfiles públicos, se revisa el catálogo renglón por renglón y se
+                    audita lo que ya existe. De ahí salen las cifras que abren este caso.
+                </p>
+            </li>
+            <li class="border border-frost-border p-6 bg-white">
+                <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Dos</span>
+                <h3 class="text-lg font-semibold tracking-tight mt-2 mb-3">Un sitio a la medida, con contenido propio</h3>
+                <p class="text-sm text-frost-muted leading-relaxed">
+                    Construido para este negocio, no adaptado de otro. Los textos, la guía por
+                    material, las preguntas y los legales se escriben desde cómo trabaja el taller.
+                </p>
+            </li>
+            <li class="border border-frost-border p-6 bg-white">
+                <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Tres</span>
+                <h3 class="text-lg font-semibold tracking-tight mt-2 mb-3">Un plan de acciones para redes</h3>
+                <p class="text-sm text-frost-muted leading-relaxed">
+                    Qué publicar, con qué frecuencia y en qué orden atacarlo. Escrito para seguirse,
+                    no para archivarse.
+                </p>
+            </li>
+            <li class="border border-frost-border p-6 bg-white">
+                <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Cuatro</span>
+                <h3 class="text-lg font-semibold tracking-tight mt-2 mb-3">Seguimiento mensual por tres meses</h3>
+                <p class="text-sm text-frost-muted leading-relaxed">
+                    Se vuelven a medir las mismas cifras y se ajusta el plan con lo que haya pasado.
+                    Entregar y desaparecer es lo que hace que un sitio se quede quieto.
+                </p>
+            </li>
+        </ol>
+    </section>
+
     {{-- 1. El diagnóstico y el método --}}
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
         <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Dónde estaba el negocio</span>
@@ -82,6 +123,10 @@
                         <th scope="row" class="text-left font-medium px-6 py-3">Perfil de empresa en Google</th>
                         <td class="px-6 py-3 text-right font-mono text-frost-dark">no existía</td>
                     </tr>
+                    <tr>
+                        <th scope="row" class="text-left font-medium px-6 py-3">Sitio web</th>
+                        <td class="px-6 py-3 text-right font-mono text-frost-dark">no tenía</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -95,11 +140,21 @@
     {{-- 2. Las secciones y páginas reales --}}
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
         <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Qué se construyó</span>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">Las secciones y páginas reales</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">Las secciones y páginas</h2>
+
+        <p class="text-base text-frost-muted max-w-2xl leading-relaxed mb-4">
+            CalzaClean no tenía sitio: el negocio vivía en Instagram y en conversaciones de
+            WhatsApp. Esto es lo que existe hoy en calzaclean.com, (revisado el 7 de septiembre de 2026).
+        </p>
 
         <p class="text-base text-frost-muted max-w-2xl leading-relaxed mb-10">
-            Lo que existe hoy en calzaclean.com, revisado contra el sitio publicado el 7 de
-            septiembre de 2026.
+            El sitio se diseñó
+            <span class="text-frost-dark font-medium">para el teléfono primero</span>, que es de
+            donde llega casi todo el tráfico de Instagram — incluido el panel, pensado para subir
+            fotos con el par recién terminado en la mano. Y
+            <span class="text-frost-dark font-medium">todo el contenido se escribió para este
+            negocio</span>: los precios, la guía por material, las preguntas y los textos legales
+            salen de cómo trabaja este taller, no de una plantilla con el nombre cambiado.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -131,7 +186,7 @@
             </div>
 
             <div class="border border-frost-border p-6 bg-white">
-                <h3 class="text-lg font-semibold tracking-tight mb-4">El panel</h3>
+                <h3 class="text-lg font-semibold tracking-tight mb-4">El panel o backoffice</h3>
                 <ul class="space-y-3 text-sm text-frost-muted leading-relaxed">
                     <li><span class="text-frost-dark font-medium">Trabajos</span> — subir las dos fotos desde el celular, con el par recién terminado enfrente. Es la pantalla que se usa cada semana.</li>
                     <li><span class="text-frost-dark font-medium">Precios</span> — tabla editable, con vista previa de cómo queda publicada.</li>
@@ -160,7 +215,7 @@
 
         <p class="text-base text-frost-muted max-w-2xl leading-relaxed mb-10">
             El diagnóstico dejó quince acciones. El sitio resolvió cuatro y habilitó otras dos; las
-            nueve restantes dependen de una persona, no de una entrega. Las tres que más rinden, en
+            nueve restantes dependen de una persona, no de una entrega. Las tres que más redituarán, en
             orden:
         </p>
 
@@ -192,40 +247,8 @@
             </li>
         </ol>
 
-        <h3 class="text-2xl font-bold tracking-tight mt-16 mb-6">Las quince, con su estado</h3>
 
-        <div class="overflow-x-auto border border-frost-border bg-white">
-            <table class="w-full text-sm">
-                <caption class="sr-only">Las quince acciones del diagnóstico y su estado al 7 de septiembre de 2026</caption>
-                <thead>
-                    <tr class="border-b border-frost-border bg-frost-light">
-                        <th scope="col" class="text-left text-[10px] font-bold uppercase tracking-widest text-frost-muted px-4 py-3">#</th>
-                        <th scope="col" class="text-left text-[10px] font-bold uppercase tracking-widest text-frost-muted px-4 py-3">Acción</th>
-                        <th scope="col" class="text-left text-[10px] font-bold uppercase tracking-widest text-frost-muted px-4 py-3">Estado</th>
-                        <th scope="col" class="text-left text-[10px] font-bold uppercase tracking-widest text-frost-muted px-4 py-3">Qué pasó</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($caso['acciones'] as $accion)
-                        <tr class="border-b border-frost-border last:border-b-0 align-top">
-                            <td class="px-4 py-3 font-mono text-xs text-frost-muted whitespace-nowrap">{{ $accion['numero'] }}</td>
-                            <td class="px-4 py-3 font-medium">{{ $accion['accion'] }}</td>
-                            <td class="px-4 py-3 whitespace-nowrap">
-                                <span @class([
-                                    'inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1',
-                                    'bg-frost-dark text-white' => in_array($accion['estado'], ['Hecha', 'Decidida'], true),
-                                    'border border-frost-dark text-frost-dark' => $accion['estado'] === 'Habilitada',
-                                    'border border-frost-border text-frost-muted' => $accion['estado'] === 'Pendiente',
-                                ])>{{ $accion['estado'] }}</span>
-                            </td>
-                            <td class="px-4 py-3 text-frost-muted">{{ $accion['nota'] }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <p class="text-sm text-frost-muted max-w-2xl leading-relaxed mt-6">
+        <p class="text-sm text-frost-muted max-w-2xl leading-relaxed mt-10">
             Nueve de las quince son de operación —publicar seguido, pedir reseñas, abrir la ficha de
             Google— y ninguna se resuelve construyendo software. Un sitio no vende solo.
         </p>
@@ -248,17 +271,12 @@
                     <tr class="border-b border-frost-border align-top">
                         <td class="px-6 py-3 font-medium">Diagnóstico de marca, versión 1</td>
                         <td class="px-6 py-3 whitespace-nowrap text-frost-muted">6 de septiembre de 2026</td>
-                        <td class="px-6 py-3 text-frost-muted">Las cifras de la auditoría y las quince acciones.</td>
+                        <td class="px-6 py-3 text-frost-muted">Las cifras de la auditoría y las quince acciones del plan.</td>
                     </tr>
                     <tr class="border-b border-frost-border align-top">
                         <td class="px-6 py-3 font-medium">Diagnóstico de marca, versión 2</td>
                         <td class="px-6 py-3 whitespace-nowrap text-frost-muted">7 de septiembre de 2026</td>
                         <td class="px-6 py-3 text-frost-muted">El estado de cada acción y las decisiones ya cerradas.</td>
-                    </tr>
-                    <tr class="border-b border-frost-border align-top">
-                        <td class="px-6 py-3 font-medium">Muestreo del archivo del logo</td>
-                        <td class="px-6 py-3 whitespace-nowrap text-frost-muted">6 de septiembre de 2026</td>
-                        <td class="px-6 py-3 text-frost-muted">Los dos azules y sus medidas de contraste.</td>
                     </tr>
                     <tr class="align-top">
                         <td class="px-6 py-3 font-medium">El sitio publicado</td>
@@ -270,12 +288,40 @@
         </div>
     </section>
 
+    <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-frost-muted">Cuánto cuesta y cuánto tarda</h2>
+
+        <p class="text-base text-frost-muted leading-relaxed mt-4">
+            Cubre las cuatro partes: la evaluación, el sitio con su contenido, el plan de acciones y el seguimiento.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            <div class="border border-frost-border p-6 bg-white">
+                <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Costo</span>
+                <p class="text-2xl font-bold tracking-tight mt-2">$8,500 – $15,000 <span class="text-base font-medium text-frost-muted">MXN</span></p>
+                <p class="text-sm text-frost-muted leading-relaxed mt-3">
+                    Dónde cae depende de cuántas pantallas necesite administrar el negocio y de
+                    cuánto contenido haya que escribir desde cero.
+                </p>
+            </div>
+            <div class="border border-frost-border p-6 bg-white">
+                <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Tiempo</span>
+                <p class="text-2xl font-bold tracking-tight mt-2">Una semana</p>
+                <p class="text-sm text-frost-muted leading-relaxed mt-3">
+                    Contada desde la firma del contrato. Los tres meses de seguimiento corren
+                    después, con el sitio ya publicado.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
     <section class="max-w-6xl mx-auto px-fluid-sm py-8">
         <x-frost.cta
             title="¿Empezamos por medir el tuyo?"
             buttonText="Cuéntanos qué necesitas"
             :link="route('contact')">
-            El diagnóstico va primero: números con su fecha, y de ahí sale lo que conviene construir.
+            El diagnóstico va primero: obtener los números para tener un baseline, y de ahí sale lo que conviene construir y trabajar.
         </x-frost.cta>
     </section>
 

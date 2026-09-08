@@ -27,18 +27,6 @@ test('el caso presenta la auditoría con su fecha', function () {
     $response->assertSee('Perfil de empresa en Google');
 });
 
-test('el caso lista las quince acciones con su estado', function () {
-    $acciones = config('casos-exito.calzaclean.acciones');
-
-    expect($acciones)->toHaveCount(15);
-
-    $response = $this->get(route('casos-exito.show', 'calzaclean'));
-
-    foreach ($acciones as $accion) {
-        $response->assertSee($accion['accion'], escape: false);
-    }
-});
-
 test('ninguna sección del caso menciona tecnologías', function () {
     $texto = file_get_contents(resource_path('views/casos-exito/calzaclean.blade.php'))
         .file_get_contents(resource_path('views/casos-exito/index.blade.php'))
