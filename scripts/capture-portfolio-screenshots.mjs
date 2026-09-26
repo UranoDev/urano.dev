@@ -83,6 +83,28 @@ const PROJECTS = {
       },
     ],
   },
+  'mas-reviews': {
+    baseUrl: 'https://masreviews.mx',
+    shots: [
+      {
+        name: 'hero',
+        path: '/',
+        featured: true,
+        // Tope: "Reseñas de Google con un toque" + la pieza NFC/QR.
+      },
+      {
+        name: 'como-funciona',
+        path: '/',
+        scrollToText: 'Lo que pasa, paso por paso',
+        scrollBy: -40,
+      },
+      {
+        name: 'estilo',
+        path: '/estilo',
+        // Guía de estilo viva del proyecto — sirve como muestra de dirección visual.
+      },
+    ],
+  },
 };
 
 async function settleScroll(page) {

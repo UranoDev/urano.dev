@@ -33,11 +33,12 @@ class PortfolioProjectSeeder extends Seeder
         'pest' => ['name' => 'Pest', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Testing, 'color' => '#16A34A'],
         'phpunit' => ['name' => 'PHPUnit', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Testing, 'color' => '#3C9CD7'],
         'mariadb' => ['name' => 'MariaDB', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Database, 'color' => '#003545'],
-        'plesk' => ['name' => 'Plesk', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Infra, 'color' => '#1565C0'],
+        'plesk' => ['name' => 'Plesk', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Infra, 'color' => '#52BBE6'],
         'deepseek' => ['name' => 'DeepSeek', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#4D6BFE'],
-        'claude' => ['name' => 'Claude Code', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#CC785C'],
+        'claude' => ['name' => 'Claude Code', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#D97757'],
         'open-library' => ['name' => 'Open Library', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#1B75BB'],
         'google-books' => ['name' => 'Google Books', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#4285F4'],
+        'stripe' => ['name' => 'Stripe', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#635BFF'],
     ];
 
     public function run(): void
@@ -183,6 +184,65 @@ class PortfolioProjectSeeder extends Seeder
                 ['path' => 'images/portfolio/calzaclean/hero.png', 'alt' => 'Portada: limpieza a mano por material, con comparador antes/después', 'featured' => true],
                 ['path' => 'images/portfolio/calzaclean/resultados.png', 'alt' => 'Galería de resultados con comparador deslizable antes/después', 'featured' => false],
                 ['path' => 'images/portfolio/calzaclean/precios.png', 'alt' => 'Lista de precios por servicio y extras', 'featured' => false],
+            ],
+        ]);
+
+        $this->seedProject($tech, [
+            'slug' => 'mas-reviews',
+            'title' => 'Más Reviews',
+            'tagline' => 'Un dispositivo sobre el mostrador que manda a tu cliente directo a dejar una reseña en Google',
+            'url' => 'https://masreviews.mx',
+            'status' => PortfolioProjectStatus::Live,
+            'category' => PortfolioProjectCategory::Saas,
+            'started_year' => 2026,
+            'started_month' => 8,
+            'ended_year' => null,
+            'ended_month' => null,
+            'description' => 'Un dispositivo —soporte de acrílico o placa adhesiva— que un negocio deja en el mostrador: el cliente acerca el teléfono o escanea un código y cae directo en la caja de reseña de su perfil de Google, sin buscar el perfil ni teclear nada. Apunta al turismo de Pueblo Mágico, donde una reseña se pide una sola vez porque el visitante no vuelve. El dispositivo se vende una vez; el panel y el seguimiento se cobran por suscripción.',
+            'features' => [
+                'Toca o escanea: sin app, sin login, sin teclear una sola letra',
+                'Formatos de dispositivo con o sin chip NFC — soporte de acrílico o placa adhesiva',
+                'Tienda propia para pedir el dispositivo, subir el logo y ver el arte antes de comprar',
+                'Panel para administrar dispositivos, destinos y toques',
+                'Cobro con Stripe en MXN — tarjeta, OXXO y SPEI',
+                'Dirección visual propia ("Talavera"): escalas de color en OKLCH, tipografía autoalojada sin peticiones externas',
+            ],
+            'site_structure' => [
+                [
+                    'title' => 'Sitio público',
+                    'items' => [
+                        ['name' => 'Portada', 'description' => 'Cómo funciona, en tres pasos.'],
+                        ['name' => 'Blog y quiénes lo usan'],
+                        ['name' => 'Guía de estilo viva', 'description' => 'Se sirve con el CSS real de producción, no una maqueta aparte.'],
+                    ],
+                ],
+                [
+                    'title' => 'Tienda y Panel',
+                    'items' => [
+                        ['name' => 'Tienda', 'description' => 'El negocio pide su dispositivo, sube su logo y ve el arte antes de comprar.'],
+                        ['name' => 'Panel', 'description' => 'El negocio administra sus dispositivos, destinos y toques.'],
+                    ],
+                ],
+                [
+                    'title' => 'Consola (equipo)',
+                    'items' => [
+                        ['name' => 'Negocios, pedidos y lotes de fabricación'],
+                        ['name' => 'Inventario y facturación'],
+                    ],
+                ],
+            ],
+            'stack' => ['laravel', 'livewire', 'flux', 'tailwind', 'pest', 'mariadb', 'plesk', 'stripe', 'claude'],
+            'highlights' => [
+                ['text' => 'El estado de un Pedido lo mueve el webhook de Stripe, nunca el retorno del navegador; los webhooks se tratan como idempotentes para que el mismo evento no produzca dos Pedidos pagados.', 'tech' => ['stripe']],
+                ['text' => 'La suscripción no vive en Stripe: el sistema es la fuente de verdad de qué negocio está activo, Stripe solo cobra.', 'tech' => ['stripe']],
+                ['text' => 'Fabricación por lote: los dispositivos nacen agrupados, y el que lleva chip NFC se da de alta en blanco hasta que el taller lo graba y confirma.', 'tech' => []],
+                ['text' => 'El chip NFC guarda una URL, no datos del negocio, así que cambiar el destino de un dispositivo nunca obliga a reemplazar la pieza física.', 'tech' => []],
+                ['text' => 'Arte y logos se guardan en S3, separados del servidor de aplicación.', 'tech' => []],
+            ],
+            'screenshots' => [
+                ['path' => 'images/portfolio/mas-reviews/hero.png', 'alt' => 'Portada: reseñas de Google con un toque', 'featured' => true],
+                ['path' => 'images/portfolio/mas-reviews/como-funciona.png', 'alt' => 'Cómo funciona, en tres pasos', 'featured' => false],
+                ['path' => 'images/portfolio/mas-reviews/estilo.png', 'alt' => 'Guía de estilo viva: dirección visual Talavera en OKLCH', 'featured' => false],
             ],
         ]);
     }
