@@ -41,6 +41,7 @@ class PortfolioProjectSeeder extends Seeder
         'stripe' => ['name' => 'Stripe', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#635BFF'],
         'mysql' => ['name' => 'MySQL', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Database, 'color' => '#4479A1'],
         'alpinejs' => ['name' => 'Alpine.js', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Frontend, 'color' => '#8BC0D0'],
+        'filament' => ['name' => 'Filament 4', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Backend, 'color' => '#FDAE4B'],
     ];
 
     public function run(): void
@@ -306,6 +307,65 @@ class PortfolioProjectSeeder extends Seeder
                 ['path' => 'images/portfolio/penieltx/hero.png', 'alt' => 'Portada: un lugar para conocer a Dios y caminar en comunidad', 'featured' => true],
                 ['path' => 'images/portfolio/penieltx/quienes-somos.png', 'alt' => 'Credo doctrinal con versículos de sustento y descarga en PDF', 'featured' => false],
                 ['path' => 'images/portfolio/penieltx/donaciones.png', 'alt' => 'Donaciones y ofrendas por Stripe', 'featured' => false],
+            ],
+        ]);
+
+        $this->seedProject($tech, [
+            'slug' => 'vista-alta',
+            'title' => 'Vista Alta',
+            'tagline' => 'Rendición de cuentas de la Mesa Directiva de un fraccionamiento hacia su Asamblea de colonos',
+            'url' => 'https://vistaaltatx.com',
+            'logo_path' => 'images/portfolio/vista-alta/favicon.png',
+            'status' => PortfolioProjectStatus::Live,
+            'category' => PortfolioProjectCategory::Client,
+            'started_year' => 2026,
+            'started_month' => 7,
+            'ended_year' => null,
+            'ended_month' => null,
+            'description' => 'Sitio de rendición de cuentas para la Mesa Directiva de un fraccionamiento: publica el reporte financiero de cada mes, la bitácora de actividades realizadas y lo que sigue pendiente, y recibe comentarios de los colonos sobre la propuesta que la Mesa Directiva somete a la Asamblea. Se lee entero sin registrarse — a los colonos no se les pide cuenta para consultar lo que se les rinde. Un panel de administración aparte, hecho con Filament, es donde la Mesa Directiva publica cada mes.',
+            'features' => [
+                'Reporte financiero de cada mes, con su propia dirección permanente — ningún mes rendido se retira ni se corrige hacia atrás',
+                'Bitácora de actividades realizadas y "Lo que sigue" para lo pendiente, sin fechas comprometidas cuando dependen de un tercero',
+                'Comentarios sobre la propuesta, validados por SMS (OTP) o recibidos por WhatsApp, públicos o privados a elección del colono',
+                'Cola de moderación: ningún comentario público aparece en el sitio hasta que la Mesa Directiva lo publica',
+                'Sección de Convivencia con publicaciones en Markdown sobre el manejo de áreas comunes y basura',
+                'Panel de administración en Filament para publicar reportes, actividades, pendientes y posts',
+            ],
+            'site_structure' => [
+                [
+                    'title' => 'Rendición de cuentas (público)',
+                    'items' => [
+                        ['name' => 'Reporte financiero', 'description' => 'Resumen del mes con enlace a la hoja de cálculo completa; los meses anteriores quedan publicados con su propia fecha en la URL.'],
+                        ['name' => 'Actividades', 'description' => 'Bitácora de lo ya hecho y, debajo, lo que sigue pendiente.'],
+                        ['name' => 'Convivencia', 'description' => 'Publicaciones sobre cómo se vive el fraccionamiento — no rinde cuentas, informa.'],
+                        ['name' => 'Vigilancia', 'description' => 'Contesta distinto según la hora del acceso.'],
+                        ['name' => 'Administración', 'description' => 'Quiénes integran la Mesa Directiva y cómo va el trámite de la asociación civil.'],
+                        ['name' => 'Propuesta', 'description' => 'El planteamiento sometido a la Asamblea, con sus comentarios.'],
+                        ['name' => 'Demanda', 'description' => 'Solicitud de comprobantes de depósito de la administración anterior.'],
+                    ],
+                ],
+                [
+                    'title' => 'Panel (Mesa Directiva)',
+                    'items' => [
+                        ['name' => 'Reportes financieros', 'description' => 'Captura del resumen mensual.'],
+                        ['name' => 'Actividades y pendientes'],
+                        ['name' => 'Comentarios', 'description' => 'Cola de moderación de públicos y privados, con el interruptor de recepción y la vía (SMS o WhatsApp).'],
+                        ['name' => 'Posts de Convivencia'],
+                    ],
+                ],
+            ],
+            'stack' => ['laravel', 'filament', 'tailwind', 'mariadb', 'phpunit', 'plesk', 'claude'],
+            'highlights' => [
+                ['text' => 'Un teléfono validado por OTP tiene 30 minutos para comentar sin repetir la validación; al expirar, nada de lo publicado se pierde.', 'tech' => []],
+                ['text' => 'La vía de recepción de comentarios (SMS o WhatsApp) decide quién elige la visibilidad pública o privada: el autor en un caso, la Mesa Directiva en el otro.', 'tech' => []],
+                ['text' => 'Cada mes rendido conserva su propia URL con fecha y nunca se corrige hacia atrás; el mes vigente y el histórico son la misma entidad, no una copia.', 'tech' => ['mariadb']],
+                ['text' => 'Panel de administración construido en Filament 4, separado del sitio público en su propio bundle de estilos.', 'tech' => ['filament']],
+                ['text' => 'Glosario de dominio propio en el repositorio (CONTEXT.md) que fija los términos exactos del negocio — Asamblea, Colono, Periodo, Cuota — para que el código y la interfaz no los confundan entre sí.', 'tech' => []],
+            ],
+            'screenshots' => [
+                ['path' => 'images/portfolio/vista-alta/hero.png', 'alt' => 'Reporte financiero del mes: resumen de ingresos y egresos', 'featured' => true],
+                ['path' => 'images/portfolio/vista-alta/actividades.png', 'alt' => 'Bitácora de actividades realizadas por la Mesa Directiva', 'featured' => false],
+                ['path' => 'images/portfolio/vista-alta/administracion.png', 'alt' => 'Página de Administración: trámite de la asociación civil', 'featured' => false],
             ],
         ]);
     }

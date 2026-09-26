@@ -101,6 +101,25 @@ const PROJECTS = {
       },
     ],
   },
+  'vista-alta': {
+    baseUrl: 'https://vistaaltatx.com',
+    shots: [
+      {
+        name: 'hero',
+        path: '/reporte-financiero',
+        featured: true,
+        // Tope: título "Reporte financiero" + el resumen de ingresos/egresos del mes.
+      },
+      {
+        name: 'actividades',
+        path: '/actividades',
+      },
+      {
+        name: 'administracion',
+        path: '/administracion',
+      },
+    ],
+  },
   'mas-reviews': {
     baseUrl: 'https://masreviews.mx',
     shots: [
