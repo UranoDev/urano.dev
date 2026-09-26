@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -29,7 +30,18 @@ class PageSpeedInsightsService
             $query .= '&category='.$category;
         }
 
-        $response = Http::timeout(60)->get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?'.$query);
+        try {
+            // PageSpeed corre Lighthouse contra la URL real en el momento de la
+            // petición — puede tardar más que una API normal, de ahí el timeout
+            // largo. Un timeout no es un `failed()`: Http lo lanza como excepción,
+            // y esa excepción trae la URL completa (con la key) en su mensaje, así
+            // que se captura aquí para que nunca llegue a un log ni a la consola.
+            $response = Http::timeout(120)->get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?'.$query);
+        } catch (ConnectionException) {
+            Log::warning('PageSpeed Insights: la petición no respondió a tiempo', ['url' => $url]);
+
+            return null;
+        }
 
         if ($response->failed()) {
             Log::warning('PageSpeed Insights: la petición falló', ['url' => $url, 'status' => $response->status()]);
