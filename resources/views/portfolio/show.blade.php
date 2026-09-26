@@ -122,4 +122,8 @@
     <section class="max-w-6xl mx-auto px-fluid-sm pb-fluid-lg">
         <a href="{{ route('portfolio.index') }}" class="text-sm font-semibold hover:text-frost-muted transition">← Todo el portafolio</a>
     </section>
+
+    <div class="border-t border-frost-border">
+        <x-portfolio.tech-ribbon />
+    </div>
 </x-layouts.app>
