@@ -44,4 +44,8 @@ return [
     'whatsapp' => [
         'number' => env('WHATSAPP_NUMBER', '5214421234567'),
     ],
+
+    'pagespeed' => [
+        'key' => env('PAGESPEED_API_KEY'),
+    ],
 ];

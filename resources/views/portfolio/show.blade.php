@@ -80,6 +80,38 @@
         </section>
     @endif
 
+    {{-- PageSpeed Insights --}}
+    @if ($project->pagespeed_measured_at)
+        <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">
+            <span class="text-xs font-bold uppercase tracking-widest text-frost-muted">Qué tan rápido carga</span>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-6">PageSpeed Insights</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                @foreach ([
+                    'Rendimiento' => $project->pagespeed_performance,
+                    'Accesibilidad' => $project->pagespeed_accessibility,
+                    'Buenas prácticas' => $project->pagespeed_best_practices,
+                    'SEO' => $project->pagespeed_seo,
+                ] as $label => $score)
+                    <div class="border border-frost-border p-6 bg-white text-center">
+                        <p @class([
+                            'text-3xl font-bold tracking-tight',
+                            'text-green-700' => $score >= 90,
+                            'text-amber-700' => $score >= 50 && $score < 90,
+                            'text-red-700' => $score < 50,
+                        ])>{{ $score }}</p>
+                        <p class="text-xs text-frost-muted uppercase tracking-widest mt-2">{{ $label }}</p>
+                    </div>
+                @endforeach
+            </div>
+
+            <p class="text-sm text-frost-muted mt-6">
+                Medido el {{ $project->pagespeedMeasuredAtLabel() }} —
+                <a href="https://pagespeed.web.dev/analysis?url={{ urlencode($project->url) }}&form_factor=mobile" target="_blank" rel="noopener" class="underline hover:text-frost-dark transition">verificarlo en tiempo real ↗</a>
+            </p>
+        </section>
+    @endif
+
     {{-- Cuánto cuesta y cuánto tarda --}}
     @if ($project->cost_label || $project->duration_label)
         <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-md border-t border-frost-border">

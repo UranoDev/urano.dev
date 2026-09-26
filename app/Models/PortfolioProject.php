@@ -32,6 +32,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'site_structure',
     'features',
     'sort_order',
+    'pagespeed_performance',
+    'pagespeed_accessibility',
+    'pagespeed_best_practices',
+    'pagespeed_seo',
+    'pagespeed_measured_at',
 ])]
 class PortfolioProject extends Model
 {
@@ -48,6 +53,7 @@ class PortfolioProject extends Model
             'category' => PortfolioProjectCategory::class,
             'features' => 'array',
             'site_structure' => 'array',
+            'pagespeed_measured_at' => 'datetime',
         ];
     }
 
@@ -98,6 +104,21 @@ class PortfolioProject extends Model
             : (string) $this->ended_year;
 
         return "{$start} – {$end}";
+    }
+
+    /**
+     * "25 de septiembre de 2026" — mismo criterio que `periodLabel()`: nombres
+     * de mes en español escritos a mano, porque `APP_LOCALE` es `en`.
+     */
+    public function pagespeedMeasuredAtLabel(): ?string
+    {
+        if (! $this->pagespeed_measured_at) {
+            return null;
+        }
+
+        $month = self::MONTHS[(int) $this->pagespeed_measured_at->format('n')];
+
+        return $this->pagespeed_measured_at->format('d').' de '.$month.' de '.$this->pagespeed_measured_at->format('Y');
     }
 
     private const MONTHS = [
