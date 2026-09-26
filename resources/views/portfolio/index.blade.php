@@ -18,13 +18,15 @@
         </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-fluid-sm py-8">
-        <div class="border-t border-frost-border pt-12 space-y-16">
-            @foreach ($projects as $project)
-                <x-portfolio.project-card :project="$project" />
-            @endforeach
-        </div>
-    </section>
+    @if ($projects->isNotEmpty())
+        <section class="max-w-6xl mx-auto px-fluid-sm py-8">
+            <div class="border-t border-frost-border pt-12 space-y-16">
+                @foreach ($projects as $project)
+                    <x-portfolio.project-card :project="$project" />
+                @endforeach
+            </div>
+        </section>
+    @endif
 
     <section class="max-w-6xl mx-auto px-fluid-sm py-8">
         <x-frost.cta

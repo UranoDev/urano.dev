@@ -56,7 +56,7 @@
                         <span class="size-1.5 rounded-full bg-frost-border"></span>
                         <span class="size-1.5 rounded-full bg-frost-border"></span>
                     </div>
-                    <img src="{{ asset($featured->path) }}" alt="{{ $featured->alt }}" style="height: 224px;" class="w-full object-cover object-top block">
+                    <img src="{{ asset($featured->path) }}" alt="{{ $featured->alt }}" width="1280" height="800" style="height: 224px;" class="w-full object-cover object-top block">
                 </div>
             @endif
             @foreach ($otherShots as $shot)
@@ -66,7 +66,7 @@
                         <span class="size-1.5 rounded-full bg-frost-border"></span>
                         <span class="size-1.5 rounded-full bg-frost-border"></span>
                     </div>
-                    <img src="{{ asset($shot->path) }}" alt="{{ $shot->alt }}" style="height: 224px;" class="w-full object-cover object-top block">
+                    <img src="{{ asset($shot->path) }}" alt="{{ $shot->alt }}" width="760" height="660" style="height: 224px;" class="w-full object-cover object-top block" loading="lazy" decoding="async">
                 </div>
             @endforeach
         </div>
