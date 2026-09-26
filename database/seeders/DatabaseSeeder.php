@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PostSeeder::class,
-            ServiceSeeder::class,        ]);
+            ServiceSeeder::class,
+            PortfolioProjectSeeder::class,
+        ]);
     }
 }

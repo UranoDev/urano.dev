@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CasoExitoController;
 use App\Http\Controllers\LinkClickController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SitemapController;
 use App\Models\Link;
@@ -62,6 +63,9 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 
 Route::get('/servicios', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/servicios/{slug}', [ServiceController::class, 'show'])->name('services.show');
+
+Route::get('/portafolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+Route::get('/portafolio/{project:slug}', [PortfolioController::class, 'show'])->name('portfolio.show');
 
 Route::get('/casos-exito', [CasoExitoController::class, 'index'])->name('casos-exito.index');
 Route::get('/casos-exito/{proyecto}', [CasoExitoController::class, 'show'])

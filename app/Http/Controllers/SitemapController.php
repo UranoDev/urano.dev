@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PortfolioProject;
 use App\Models\Post;
 use App\Models\Service;
 use Illuminate\Http\Response;
@@ -19,6 +20,7 @@ class SitemapController extends Controller
             route('home'),
             route('services.index'),
             route('casos-exito.index'),
+            route('portfolio.index'),
             route('blog.index'),
             route('nosotros'),
             route('contact'),
@@ -31,6 +33,8 @@ class SitemapController extends Controller
                 ->map(fn (string $slug): string => route('services.show', $slug)))
             ->merge(collect(array_keys(config('casos-exito')))
                 ->map(fn (string $proyecto): string => route('casos-exito.show', $proyecto)))
+            ->merge(PortfolioProject::query()->orderBy('sort_order')->pluck('slug')
+                ->map(fn (string $slug): string => route('portfolio.show', $slug)))
             ->merge(Post::query()->where('status', 'published')->orderBy('id')->pluck('slug')
                 ->map(fn (string $slug): string => route('blog.show', $slug)));
 
