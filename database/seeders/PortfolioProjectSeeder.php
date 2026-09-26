@@ -39,6 +39,8 @@ class PortfolioProjectSeeder extends Seeder
         'open-library' => ['name' => 'Open Library', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#1B75BB'],
         'google-books' => ['name' => 'Google Books', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#4285F4'],
         'stripe' => ['name' => 'Stripe', 'group' => TechnologyGroup::Service, 'category' => TechnologyCategory::Ai, 'color' => '#635BFF'],
+        'mysql' => ['name' => 'MySQL', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Database, 'color' => '#4479A1'],
+        'alpinejs' => ['name' => 'Alpine.js', 'group' => TechnologyGroup::Stack, 'category' => TechnologyCategory::Frontend, 'color' => '#8BC0D0'],
     ];
 
     public function run(): void
@@ -243,6 +245,67 @@ class PortfolioProjectSeeder extends Seeder
                 ['path' => 'images/portfolio/mas-reviews/hero.png', 'alt' => 'Portada: reseñas de Google con un toque', 'featured' => true],
                 ['path' => 'images/portfolio/mas-reviews/como-funciona.png', 'alt' => 'Cómo funciona, en tres pasos', 'featured' => false],
                 ['path' => 'images/portfolio/mas-reviews/estilo.png', 'alt' => 'Guía de estilo viva: dirección visual Talavera en OKLCH', 'featured' => false],
+            ],
+        ]);
+
+        $this->seedProject($tech, [
+            'slug' => 'penieltx',
+            'title' => 'PenielTx',
+            'tagline' => 'Sitio y panel de la Iglesia Cristiana Peniel, en Tequisquiapan, Querétaro',
+            'url' => 'https://penieltx.org',
+            'logo_path' => 'images/portfolio/penieltx/favicon.png',
+            'status' => PortfolioProjectStatus::Live,
+            'category' => PortfolioProjectCategory::Client,
+            'started_year' => 2026,
+            'started_month' => 7,
+            'ended_year' => null,
+            'ended_month' => null,
+            'description' => 'Sitio y panel de administración para una iglesia local: portada, ministerios, credos, prédicas y donaciones por Stripe, con un panel para que el equipo administre contenido, mensajes de contacto y reservas de consejería pastoral — con permisos por rol para Admin, Editor y Servidor.',
+            'features' => [
+                'Reservación de consejería pastoral en línea, con franjas de horario que el equipo administra',
+                'Donaciones y ofrendas por Stripe',
+                'Credos con versículos de sustento y descarga de la doctrina completa en PDF',
+                'Sitio bilingüe, español e inglés',
+                'Panel con permisos por recurso — Admin, Editor y Servidor ven solo lo que les corresponde',
+                'Archivo de prédicas con video y series por tema',
+            ],
+            'site_structure' => [
+                [
+                    'title' => 'Sitio público',
+                    'items' => [
+                        ['name' => 'Portada'],
+                        ['name' => '¿Quiénes somos?', 'description' => 'Misión, visión, historia y equipo.'],
+                        ['name' => 'Ministerios'],
+                        ['name' => 'Credos', 'description' => 'Un punto doctrinal por página, con versículos de sustento y PDF descargable.'],
+                        ['name' => 'Prédicas', 'description' => 'Archivo por serie, con video.'],
+                        ['name' => 'Contacto', 'description' => 'Formulario y reserva de consejería pastoral.'],
+                        ['name' => 'Donaciones', 'description' => 'Pago por Stripe.'],
+                    ],
+                ],
+                [
+                    'title' => 'Panel (equipo)',
+                    'items' => [
+                        ['name' => 'Usuarios y ajustes', 'description' => 'Solo Admin.'],
+                        ['name' => 'Donaciones', 'description' => 'Listado y exportación.'],
+                        ['name' => 'Localidades, reuniones y ministerios'],
+                        ['name' => 'Credos, equipo y prédicas'],
+                        ['name' => 'Mensajes de contacto'],
+                        ['name' => 'Reservas de consejería', 'description' => 'Aprobar, cancelar y administrar las franjas de horario disponibles.'],
+                    ],
+                ],
+            ],
+            'stack' => ['laravel', 'alpinejs', 'tailwind', 'mysql', 'plesk', 'stripe', 'claude'],
+            'highlights' => [
+                ['text' => 'Permisos declarados por recurso (manage services, manage sermons…) con spatie/laravel-permission, no un único rol de "admin" que lo puede todo.', 'tech' => []],
+                ['text' => 'Las donaciones se cobran y concilian con Stripe vía laravel/cashier, con webhook de confirmación.', 'tech' => ['stripe']],
+                ['text' => 'El sitio es bilingüe con un selector de idioma por ruta, sin duplicar vistas por cada idioma.', 'tech' => []],
+                ['text' => 'Los credos permiten descargar la doctrina extendida en PDF, generado a partir del mismo contenido que se muestra en pantalla.', 'tech' => []],
+                ['text' => 'Suite de 50 archivos de pruebas con PHPUnit — el único proyecto del portafolio que no usa Pest.', 'tech' => []],
+            ],
+            'screenshots' => [
+                ['path' => 'images/portfolio/penieltx/hero.png', 'alt' => 'Portada: un lugar para conocer a Dios y caminar en comunidad', 'featured' => true],
+                ['path' => 'images/portfolio/penieltx/quienes-somos.png', 'alt' => 'Credo doctrinal con versículos de sustento y descarga en PDF', 'featured' => false],
+                ['path' => 'images/portfolio/penieltx/donaciones.png', 'alt' => 'Donaciones y ofrendas por Stripe', 'featured' => false],
             ],
         ]);
     }

@@ -83,6 +83,24 @@ const PROJECTS = {
       },
     ],
   },
+  penieltx: {
+    baseUrl: 'https://penieltx.org',
+    shots: [
+      {
+        name: 'hero',
+        path: '/',
+        featured: true,
+      },
+      {
+        name: 'quienes-somos',
+        path: '/quienes-somos',
+      },
+      {
+        name: 'donaciones',
+        path: '/donaciones',
+      },
+    ],
+  },
   'mas-reviews': {
     baseUrl: 'https://masreviews.mx',
     shots: [
