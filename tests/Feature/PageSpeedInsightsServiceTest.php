@@ -71,3 +71,71 @@ test('el comando no falla si un proyecto no se puede medir', function () {
     $this->artisan('portfolio:refresh-pagespeed')
         ->assertExitCode(0);
 });
+
+test('sin slug, no mide un proyecto medido hace menos de 7 días', function () {
+    Http::fake();
+
+    $project = PortfolioProject::factory()->create([
+        'url' => 'https://example.com',
+        'pagespeed_performance' => 80,
+        'pagespeed_measured_at' => now()->subDays(3),
+    ]);
+
+    $this->artisan('portfolio:refresh-pagespeed')
+        ->assertExitCode(0);
+
+    Http::assertNothingSent();
+    expect($project->fresh()->pagespeed_performance)->toBe(80);
+});
+
+test('sin slug, sí mide un proyecto medido hace más de 7 días', function () {
+    Http::fake([
+        'googleapis.com/*' => Http::response([
+            'lighthouseResult' => [
+                'categories' => [
+                    'performance' => ['score' => 0.95],
+                    'accessibility' => ['score' => 0.95],
+                    'best-practices' => ['score' => 0.95],
+                    'seo' => ['score' => 0.95],
+                ],
+            ],
+        ]),
+    ]);
+
+    $project = PortfolioProject::factory()->create([
+        'url' => 'https://example.com',
+        'pagespeed_performance' => 80,
+        'pagespeed_measured_at' => now()->subDays(10),
+    ]);
+
+    $this->artisan('portfolio:refresh-pagespeed')
+        ->assertExitCode(0);
+
+    expect($project->fresh()->pagespeed_performance)->toBe(95);
+});
+
+test('con slug explícito, mide aunque se haya medido hace menos de 7 días', function () {
+    Http::fake([
+        'googleapis.com/*' => Http::response([
+            'lighthouseResult' => [
+                'categories' => [
+                    'performance' => ['score' => 0.95],
+                    'accessibility' => ['score' => 0.95],
+                    'best-practices' => ['score' => 0.95],
+                    'seo' => ['score' => 0.95],
+                ],
+            ],
+        ]),
+    ]);
+
+    $project = PortfolioProject::factory()->create([
+        'url' => 'https://example.com',
+        'pagespeed_performance' => 80,
+        'pagespeed_measured_at' => now()->subDay(),
+    ]);
+
+    $this->artisan('portfolio:refresh-pagespeed', ['slug' => $project->slug])
+        ->assertExitCode(0);
+
+    expect($project->fresh()->pagespeed_performance)->toBe(95);
+});

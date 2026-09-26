@@ -24,8 +24,10 @@ class RefreshPortfolioPagespeed extends Command
 
     public function handle(PageSpeedInsightsService $pagespeed): int
     {
+        $slug = $this->argument('slug');
+
         $projects = PortfolioProject::whereNotNull('url')
-            ->when($this->argument('slug'), fn ($query, $slug) => $query->where('slug', $slug))
+            ->when($slug, fn ($query) => $query->where('slug', $slug))
             ->get();
 
         if ($projects->isEmpty()) {
@@ -34,7 +36,24 @@ class RefreshPortfolioPagespeed extends Command
             return Command::FAILURE;
         }
 
-        foreach ($projects as $index => $project) {
+        // Un slug explícito es una orden directa de quien lo corre a mano: se
+        // mide sin importar cuándo se midió la última vez. Sin slug —como lo
+        // llama el scheduler todos los días— no vale la pena gastar cuota en un
+        // proyecto que ya se midió esta semana.
+        $forzar = (bool) $slug;
+        $porMedir = $projects->filter(fn (PortfolioProject $project) => $forzar || $this->desactualizado($project))->values();
+
+        foreach ($projects->diff($porMedir) as $reciente) {
+            $this->info("  {$reciente->title}: medido hace menos de 7 días, se deja como está.");
+        }
+
+        if ($porMedir->isEmpty()) {
+            $this->info('Nada que medir: todo se refrescó hace menos de 7 días.');
+
+            return Command::SUCCESS;
+        }
+
+        foreach ($porMedir as $index => $project) {
             $this->info("Midiendo {$project->title} ({$project->url})…");
 
             $scores = $pagespeed->scoresFor($project->url);
@@ -56,11 +75,20 @@ class RefreshPortfolioPagespeed extends Command
             $this->info("  Rendimiento {$scores['performance']}, Accesibilidad {$scores['accessibility']}, Buenas prácticas {$scores['best_practices']}, SEO {$scores['seo']}.");
 
             // Para no pegarle a la cuota de golpe cuando se miden varios seguidos.
-            if ($index < $projects->count() - 1) {
+            if ($index < $porMedir->count() - 1) {
                 sleep(1);
             }
         }
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * Si nunca se midió, o si la última medición tiene más de 7 días.
+     */
+    private function desactualizado(PortfolioProject $project): bool
+    {
+        return $project->pagespeed_measured_at === null
+            || $project->pagespeed_measured_at->lt(now()->subDays(7));
     }
 }
