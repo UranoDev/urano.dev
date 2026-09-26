@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -14,7 +17,24 @@
 
 <header x-data="{ mobileMenuOpen: false }" class="border-b border-frost-border sticky top-0 bg-white/80 backdrop-blur z-50">
     <div class="max-w-6xl mx-auto px-fluid-sm h-20 flex items-center justify-between">
-        <a href="/" class="text-xl font-bold tracking-tighter text-frost-dark">Urano Dev<span class="text-frost-muted">.</span></a>
+        <a href="/" aria-label="Urano Dev" class="block">
+            <svg viewBox="0 0 390 100" class="h-8 w-auto" role="img" aria-hidden="true">
+                <style>
+                    text { font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif; letter-spacing: 0.02em; }
+                </style>
+                <g transform="translate(10,10) scale(0.8)">
+                    <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="3.5" stroke-dasharray="7 6" fill="none" />
+                    <circle cx="50" cy="86" r="7" fill="#111111" />
+                    <circle cx="18.8" cy="32" r="7" fill="#111111" />
+                    <circle cx="81.2" cy="32" r="10.5" fill="#FAFAFA" />
+                    <circle cx="81.2" cy="32" r="8" stroke="#213A9A" stroke-width="5" fill="none" />
+                </g>
+                <text x="112" y="62" font-size="42">
+                    <tspan font-weight="700" fill="#111111">URANO</tspan>
+                    <tspan font-weight="400" fill="#666666" dx="10">DEV</tspan>
+                </text>
+            </svg>
+        </a>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">

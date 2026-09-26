@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Logo Urano Dev — especificación de marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111111;
+    --muted: #666666;
+    --subtle: #aaaaaa;
+    --border: #e5e5e5;
+    --surface: #fafafa;
+    --accent: #213A9A;
+    --accent-dark: #4C6BC4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  @page { size: letter; margin: 0; }
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.75in;
+    box-sizing: border-box;
+    page-break-after: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: avoid; }
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  p { margin: 0 0 10px; color: var(--muted); max-width: 62ch; }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1px 5px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px; }
+  th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    padding: 6px 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .swatch-row { display: flex; gap: 16px; margin-bottom: 24px; }
+  .swatch {
+    flex: 1;
+    border: 1px solid var(--border);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .swatch.dark { background: var(--ink); color: #fafafa; }
+  .swatch .label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .swatch.dark .label { color: #999; }
+  .color-chip { width: 100%; height: 48px; border: 1px solid var(--border); }
+  .footer-note { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 10px; color: var(--subtle); display: flex; justify-content: space-between; }
+  .callout {
+    border: 1px dashed var(--ink);
+    padding: 14px 20px;
+    margin: 14px 0;
+  }
+  .callout .eyebrow { color: var(--ink); }
+  .callout p { color: var(--ink); max-width: none; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .lockup-box { border: 1px solid var(--border); padding: 24px; display: flex; align-items: center; justify-content: center; }
+  .size-row { display: flex; align-items: flex-end; gap: 24px; margin: 10px 0 14px; }
+  .size-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .size-item .caption { font-size: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- Página 1 — Portada -->
+<section class="page" style="justify-content: center; align-items: center; text-align: center;">
+  <svg viewBox="0 0 100 100" width="160" height="160" fill="none" style="margin-bottom: 32px;">
+    <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="3.5" stroke-dasharray="7 6"/>
+    <circle cx="50" cy="86" r="7" fill="#111111"/>
+    <circle cx="18.8" cy="32" r="7" fill="#111111"/>
+    <circle cx="81.2" cy="32" r="10.5" fill="#FAFAFA"/>
+    <circle cx="81.2" cy="32" r="8" stroke="#213A9A" stroke-width="5"/>
+  </svg>
+  <div style="font-size: 40px; font-weight: 700; letter-spacing: -0.01em;">
+    URANO<span style="font-weight: 400; color: var(--muted); margin-left: 8px;">DEV</span>
+  </div>
+  <p style="max-width: 40ch; margin-top: 24px; font-size: 15px;">
+    Conexión y flujo de datos entre sistemas — no un planeta, no una ilustración literal.
+  </p>
+  <div class="eyebrow" style="position: absolute; bottom: 0.75in; left: 0.75in; right: 0.75in; text-align: left;">
+    Especificación de marca · Concepto D, con acento azul
+  </div>
+</section>
+
+<!-- Página 2 — El símbolo -->
+<section class="page">
+  <div class="eyebrow">Construcción</div>
+  <h1>El símbolo</h1>
+  <p>Una órbita punteada con tres nodos: dos son puntos resueltos (sólidos), uno es un nodo en tránsito — un anillo abierto, el único elemento con color. <code>viewBox="0 0 100 100"</code>, cinco elementos en este orden — el knockout va antes del anillo para tapar la línea de la órbita, que si no se alcanza a ver por el hueco:</p>
+
+  <table>
+    <thead><tr><th>#</th><th>Elemento</th><th>Definición</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Órbita punteada</td><td><code>circle cx=50 cy=50 r=36 stroke-width=3.5 dasharray="7 6"</code></td></tr>
+      <tr><td>2</td><td>Nodo sólido 1</td><td><code>circle cx=50 cy=86 r=7</code></td></tr>
+      <tr><td>3</td><td>Nodo sólido 2</td><td><code>circle cx=18.8 cy=32 r=7</code></td></tr>
+      <tr><td>4</td><td>Knockout del nodo abierto</td><td><code>circle cx=81.2 cy=32 r=10.5 fill={fondo}</code></td></tr>
+      <tr><td>5</td><td>Anillo del nodo abierto</td><td><code>circle cx=81.2 cy=32 r=8 stroke={acento} stroke-width=5</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="swatch-row">
+    <div class="swatch">
+      <svg viewBox="0 0 100 100" width="72" height="72" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="3.5" stroke-dasharray="7 6"/>
+        <circle cx="50" cy="86" r="7" fill="#111111"/>
+        <circle cx="18.8" cy="32" r="7" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="10.5" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="8" stroke="#213A9A" stroke-width="5"/>
+      </svg>
+      <div class="label">Primaria — fondo claro</div>
+    </div>
+    <div class="swatch dark">
+      <svg viewBox="0 0 100 100" width="72" height="72" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#FAFAFA" stroke-width="3.5" stroke-dasharray="7 6"/>
+        <circle cx="50" cy="86" r="7" fill="#FAFAFA"/>
+        <circle cx="18.8" cy="32" r="7" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="10.5" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="8" stroke="#4C6BC4" stroke-width="5"/>
+      </svg>
+      <div class="label">Fondo oscuro</div>
+    </div>
+    <div class="swatch">
+      <svg viewBox="0 0 100 100" width="72" height="72" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="3.5" stroke-dasharray="7 6"/>
+        <circle cx="50" cy="86" r="7" fill="#111111"/>
+        <circle cx="18.8" cy="32" r="7" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="10.5" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="8" stroke="#111111" stroke-width="5"/>
+      </svg>
+      <div class="label">Monocromo negro</div>
+    </div>
+    <div class="swatch dark">
+      <svg viewBox="0 0 100 100" width="72" height="72" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#FAFAFA" stroke-width="3.5" stroke-dasharray="7 6"/>
+        <circle cx="50" cy="86" r="7" fill="#FAFAFA"/>
+        <circle cx="18.8" cy="32" r="7" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="10.5" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="8" stroke="#FAFAFA" stroke-width="5"/>
+      </svg>
+      <div class="label">Monocromo blanco</div>
+    </div>
+  </div>
+
+  <div class="eyebrow">Espacio de protección</div>
+  <p>Mínimo alrededor del símbolo: igual al radio de la órbita — <code>36</code> unidades del <code>viewBox</code> de 100. Nada de texto, bordes ni otros elementos dentro de ese margen.</p>
+
+  <div class="footer-note"><span>Logo Urano Dev</span><span>2 / 4</span></div>
+</section>
+
+<!-- Página 3 — Wordmark y lockups -->
+<section class="page">
+  <div class="eyebrow">Tipografía</div>
+  <h1>Wordmark y lockups</h1>
+  <p>"URANO" + "DEV" en una línea, alineados por baseline, <code>gap: 6px</code>. Instrument Sans (Google Fonts, la misma que ya usa el sitio) — URANO en peso 700, color <code>#111111</code>; DEV en peso 400, color <code>#666666</code> (o <code>#999999</code> sobre fondo oscuro). El wordmark nunca lleva el azul.</p>
+
+  <div style="font-size: 36px; margin: 24px 0 32px;">
+    <span style="font-weight: 700; color: #111111;">URANO</span><span style="font-weight: 400; color: #666666; margin-left: 8px;">DEV</span>
+  </div>
+
+  <h2>Lockups</h2>
+  <div class="grid-2">
+    <div>
+      <div class="lockup-box">
+        <svg viewBox="0 0 390 100" width="220" fill="none">
+          <g transform="translate(10,10) scale(0.8)">
+            <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="3.5" stroke-dasharray="7 6"/>
+            <circle cx="50" cy="86" r="7" fill="#111111"/>
+            <circle cx="18.8" cy="32" r="7" fill="#111111"/>
+            <circle cx="81.2" cy="32" r="10.5" fill="#FAFAFA"/>
+            <circle cx="81.2" cy="32" r="8" stroke="#213A9A" stroke-width="5"/>
+          </g>
+          <text x="112" y="62" font-size="42" font-family="'Instrument Sans', sans-serif">
+            <tspan font-weight="700" fill="#111111">URANO</tspan>
+            <tspan font-weight="400" fill="#666666" dx="10">DEV</tspan>
+          </text>
+        </svg>
+      </div>
+      <p style="text-align: center; margin-top: 8px; font-size: 11px;">Horizontal — encabezado, propuestas, facturas</p>
+    </div>
+    <div>
+      <div class="lockup-box">
+        <svg viewBox="0 0 120 150" width="110" fill="none">
+          <g transform="translate(10,10) scale(1)">
+            <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="3.5" stroke-dasharray="7 6"/>
+            <circle cx="50" cy="86" r="7" fill="#111111"/>
+            <circle cx="18.8" cy="32" r="7" fill="#111111"/>
+            <circle cx="81.2" cy="32" r="10.5" fill="#FAFAFA"/>
+            <circle cx="81.2" cy="32" r="8" stroke="#213A9A" stroke-width="5"/>
+          </g>
+          <text x="60" y="135" font-size="16" text-anchor="middle" font-family="'Instrument Sans', sans-serif">
+            <tspan font-weight="700" fill="#111111">URANO</tspan>
+            <tspan font-weight="400" fill="#666666" dx="4">DEV</tspan>
+          </text>
+        </svg>
+      </div>
+      <p style="text-align: center; margin-top: 8px; font-size: 11px;">Compacto — redes, tarjeta de presentación</p>
+    </div>
+  </div>
+
+  <div class="footer-note"><span>Logo Urano Dev</span><span>3 / 4</span></div>
+</section>
+
+<!-- Página 4 — Colores, tamaño mínimo, regla de uso -->
+<section class="page">
+  <div class="eyebrow">Paleta</div>
+  <h1>Colores</h1>
+
+  <table>
+    <thead><tr><th>Uso</th><th>Hex</th><th>Pantone</th><th>Nota</th></tr></thead>
+    <tbody>
+      <tr><td>Tinta / negro</td><td><code>#111111</code></td><td>—</td><td>El <code>--color-frost-dark</code> que ya usa el sitio</td></tr>
+      <tr><td>Papel / blanco</td><td><code>#FAFAFA</code></td><td>—</td><td>El <code>--color-frost-light</code> que ya usa el sitio</td></tr>
+      <tr><td>Acento (fondo claro)</td><td><code>#213A9A</code></td><td>661C</td><td>Único uso: el anillo del nodo abierto</td></tr>
+      <tr><td>Acento (fondo oscuro)</td><td><code>#4C6BC4</code></td><td>—</td><td>Versión aclarada del mismo azul, para contraste sobre negro</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong style="color: var(--ink);">De la marca anterior de Urano Dev, descartados para este símbolo:</strong> rojo <code>#A71B34</code> (Pantone 201C), azul marino <code>#06107D</code> (Pantone Reflex Blue C) y gris <code>#BCBCBC</code> (Pantone Cool Gray 4C). El azul <code>#213A9A</code> se conserva por ser el dominante de esa paleta anterior; los demás se dejaron fuera porque la regla de este símbolo es un solo acento, nunca dos o tres colores compitiendo.</p>
+
+  <div class="callout">
+    <div class="eyebrow">La regla más importante</div>
+    <p><strong>El azul vive solo en el nodo abierto.</strong> Nunca en la órbita, los otros dos nodos ni el wordmark. Es una capa opcional: el símbolo se sostiene en negro puro sin el acento, para impresión a una tinta, fax, sellos o grabados.</p>
+  </div>
+
+  <h2 style="margin-top: 8px;">Tamaño mínimo</h2>
+  <p>A menor tamaño, más grueso el trazo — si no, se pierde.</p>
+
+  <div class="size-row">
+    <div class="size-item">
+      <svg viewBox="0 0 100 100" width="48" height="48" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="4.5" stroke-dasharray="8 7"/>
+        <circle cx="50" cy="86" r="8" fill="#111111"/>
+        <circle cx="18.8" cy="32" r="8" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="12" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="9" stroke="#213A9A" stroke-width="6"/>
+      </svg>
+      <div class="caption">48 px — stroke 4.5</div>
+    </div>
+    <div class="size-item">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="6.5" stroke-dasharray="9 7"/>
+        <circle cx="50" cy="86" r="9" fill="#111111"/>
+        <circle cx="18.8" cy="32" r="9" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="14.5" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="10.5" stroke="#213A9A" stroke-width="8"/>
+      </svg>
+      <div class="caption">32 px — stroke 6.5</div>
+    </div>
+    <div class="size-item">
+      <svg viewBox="0 0 100 100" width="20" height="20" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#111111" stroke-width="8" stroke-dasharray="11 8"/>
+        <circle cx="50" cy="86" r="11" fill="#111111"/>
+        <circle cx="18.8" cy="32" r="11" fill="#111111"/>
+        <circle cx="81.2" cy="32" r="18" fill="#FAFAFA"/>
+        <circle cx="81.2" cy="32" r="13" stroke="#213A9A" stroke-width="10"/>
+      </svg>
+      <div class="caption">20 px — stroke 8</div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Despliegue</th><th>Stroke órbita</th><th>Dasharray</th><th>Radio nodos</th><th>Radio anillo / stroke</th><th>Radio knockout</th></tr></thead>
+    <tbody>
+      <tr><td>~48 px</td><td>4.5</td><td>8 7</td><td>8</td><td>9 / 6</td><td>12</td></tr>
+      <tr><td>~32 px</td><td>6.5</td><td>9 7</td><td>9</td><td>10.5 / 8</td><td>14.5</td></tr>
+      <tr><td>~20 px</td><td>8</td><td>11 8</td><td>11</td><td>13 / 10</td><td>18</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note"><span>Logo Urano Dev</span><span>4 / 4</span></div>
+</section>
+
+</body>
+</html>
