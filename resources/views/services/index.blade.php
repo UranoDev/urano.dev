@@ -27,7 +27,7 @@
         <div class="border-t border-frost-border pt-12">
             <x-frost.features>
                 @foreach($services as $service)
-                    <x-frost.feature-box title="{{ $service->title }}">
+                    <x-frost.feature-box title="{{ $service->title }}" :level="2">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-frost-muted">{{ $service->category }}</span>
                         <p class="mt-2">{{ Str::limit($service->hero_desc, 120) }}</p>
                         <a href="{{ route('services.show', $service->slug) }}" class="hover:underline text-frost-dark font-semibold block mt-4 text-xs tracking-tight">Saber más →</a>

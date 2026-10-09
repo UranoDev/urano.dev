@@ -39,7 +39,7 @@
                                 @endif
                             </div>
                             <div>
-                                <h4 class="font-bold text-sm">{{ $member->name }}</h4>
+                                <h3 class="font-bold text-sm">{{ $member->name }}</h3>
                                 <p class="text-xs text-frost-muted mb-1">
                                     {{ $member->role === \App\Enums\Role::Admin ? 'Administrador' : 'Autor' }}
                                 </p>

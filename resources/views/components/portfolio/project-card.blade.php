@@ -19,7 +19,8 @@
                 @if ($mark)
                     <img src="{{ asset($mark) }}" alt="" class="h-8 w-auto">
                 @endif
-                <h3 class="text-2xl md:text-3xl font-bold tracking-tight">{{ $project->title }}</h3>
+                {{-- En la lista cada proyecto es una sección; en su ficha es el título de la página. --}}
+                <{{ $linkable ? 'h2' : 'h1' }} class="text-2xl md:text-3xl font-bold tracking-tight">{{ $project->title }}</{{ $linkable ? 'h2' : 'h1' }}>
             </div>
             <p class="text-sm text-frost-muted mt-1 max-w-md">{{ $project->tagline }}</p>
         </div>

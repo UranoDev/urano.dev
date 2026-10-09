@@ -69,3 +69,21 @@ test('el sitio no carga fuentes de Google', function () {
 test('los archivos compilados llevan hash en el nombre', function () {
     expect(file_get_contents(base_path('vite.config.js')))->not->toContain("entryFileNames: 'assets/[name].js'");
 });
+
+test('los encabezados de las páginas públicas no saltan niveles', function () {
+    $project = PortfolioProject::factory()->create();
+
+    foreach (['/', '/servicios', '/portafolio', route('portfolio.show', $project), '/nosotros', '/contacto', '/blog'] as $pagina) {
+        $html = $this->get($pagina)->assertOk()->getContent();
+
+        preg_match_all('/<h([1-6])\b/', $html, $niveles);
+
+        expect($niveles[1])->toContain('1');
+
+        $anterior = 0;
+        foreach (array_map('intval', $niveles[1]) as $nivel) {
+            expect($nivel)->toBeLessThanOrEqual($anterior + 1, "$pagina salta de h$anterior a h$nivel");
+            $anterior = $nivel;
+        }
+    }
+});
