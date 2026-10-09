@@ -52,7 +52,7 @@ new #[Title('Profile settings')] class extends Component {
             if ($this->avatar) {
                 Storage::disk('public')->delete($this->avatar);
             }
-            $this->avatar = $this->avatar_file->store('avatars', 'public');
+            $this->avatar = \App\Support\AvatarImage::store($this->avatar_file);
         }
 
         $user->forceFill([

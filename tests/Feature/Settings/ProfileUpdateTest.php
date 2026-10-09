@@ -141,3 +141,22 @@ test('profile avatar can be removed', function () {
     expect($user->avatar)->toBeNull();
     Storage::disk('public')->assertMissing($avatarPath);
 });
+
+test('el avatar se guarda como un cuadrado pequeño aunque la foto sea grande y horizontal', function () {
+    Storage::fake('public');
+
+    $this->actingAs($user = User::factory()->create());
+
+    Livewire::test('pages::settings.profile')
+        ->set('name', 'Test User')
+        ->set('email', 'test@example.com')
+        ->set('avatar_file', UploadedFile::fake()->image('retrato.jpg', 1920, 1440))
+        ->call('updateProfileInformation')
+        ->assertHasNoErrors();
+
+    $path = $user->refresh()->avatar;
+
+    expect($path)->toEndWith('.jpg');
+    [$ancho, $alto] = getimagesizefromstring(Storage::disk('public')->get($path));
+    expect([$ancho, $alto])->toBe([256, 256]);
+});
