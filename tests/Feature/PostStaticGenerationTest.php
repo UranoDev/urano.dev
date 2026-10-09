@@ -259,3 +259,20 @@ test('el comando posts:regenerate vuelve a generar los artículos publicados con
     expect(File::get($this->storagePath.'/publicado.html'))->toContain('Biografía nueva del autor.');
     expect(File::exists($this->storagePath.'/borrador.html'))->toBeFalse();
 });
+
+test('las etiquetas de vista previa del artículo llevan la dirección completa', function () {
+    Post::factory()->create([
+        'user_id' => User::factory()->create()->id,
+        'slug' => 'con-vista-previa',
+        'content' => 'Contenido',
+        'cover_image' => 'posts/portada.png',
+        'status' => 'published',
+    ]);
+
+    $htmlContent = File::get($this->storagePath.'/con-vista-previa.html');
+
+    expect($htmlContent)->toContain('<link rel="canonical" href="'.url('/con-vista-previa').'">');
+    expect($htmlContent)->toContain('<meta property="og:url" content="'.url('/con-vista-previa').'">');
+    expect($htmlContent)->toContain('<meta property="og:image" content="'.url('/storage/posts/portada.png').'">');
+    expect($htmlContent)->toContain('href="/blog"');
+});

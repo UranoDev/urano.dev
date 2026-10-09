@@ -68,7 +68,14 @@ class PostStaticGenerator
         // Convierte URLs absolutas locales a rutas relativas a la raíz
         // para que el HTML estático funcione en cualquier dominio y protocolo.
         $localRoot = rtrim(url('/'), '/');
+        $html = str_replace($localRoot, '', $html);
 
-        return str_replace($localRoot, '', $html);
+        // Salvo las etiquetas que leen LinkedIn, WhatsApp y los buscadores:
+        // esas solo sirven con la dirección completa.
+        return preg_replace(
+            '/(<link rel="canonical" href="|<meta property="og:(?:url|image)" content=")\//',
+            '$1'.$localRoot.'/',
+            $html
+        );
     }
 }
