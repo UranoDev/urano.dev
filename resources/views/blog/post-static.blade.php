@@ -81,7 +81,7 @@
         .post-content li { margin-bottom: 0.5rem; }
         .post-content blockquote { border-left: 4px solid var(--color-frost-border); padding-left: 1rem; color: var(--color-frost-muted); font-style: italic; margin-bottom: 1.5rem; }
         .post-content pre { background: var(--color-frost-light); border: 1px solid var(--color-frost-border); padding: 1rem; overflow-x: auto; border-radius: 6px; margin-bottom: 1.5rem; }
-        .post-content code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+        .post-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
         .post-content a { color: var(--color-frost-dark); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
         .post-content a:hover { color: var(--color-frost-muted); }
         .post-content a:has(img) { text-decoration: none; }

@@ -52,3 +52,20 @@ test('un caso de éxito comparte su resumen', function () {
     $response->assertOk();
     $response->assertSee('<meta property="og:description" content="Un taller de una sola persona', false);
 });
+
+test('los enlaces del pie de página llevan a perfiles reales y tienen nombre', function () {
+    $response = $this->get('/');
+
+    $response->assertOk();
+    $response->assertDontSee('href="#"', false);
+    $response->assertSee('href="https://www.linkedin.com/in/uranogonzalez" aria-label="Urano González en LinkedIn"', false);
+    $response->assertSee('href="https://www.youtube.com/@uranodev" aria-label="Urano Dev en YouTube"', false);
+});
+
+test('el sitio no carga fuentes de Google', function () {
+    $this->get('/')->assertOk()->assertDontSee('fonts.googleapis.com', false);
+});
+
+test('los archivos compilados llevan hash en el nombre', function () {
+    expect(file_get_contents(base_path('vite.config.js')))->not->toContain("entryFileNames: 'assets/[name].js'");
+});
