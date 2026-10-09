@@ -2,6 +2,7 @@
 
 use App\Enums\ProjectTimeframe;
 use App\Models\ProjectInquiry;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -17,6 +18,12 @@ new #[Title('Cuéntanos qué quieres construir')] #[Layout('components.layouts.a
 
     public string $timeframe = '';
 
+    /**
+     * Campo oculto a la vista: una persona no lo ve ni lo llena; los bots que
+     * rellenan todo el formulario sí.
+     */
+    public string $website = '';
+
     public bool $submitted = false;
 
     /**
@@ -28,7 +35,11 @@ new #[Title('Cuéntanos qué quieres construir')] #[Layout('components.layouts.a
             'name' => 'required|string|max:120',
             'email' => 'required|email|max:255',
             'company' => 'nullable|string|max:120',
-            'projectDescription' => 'required|string|min:20|max:5000',
+            'projectDescription' => ['required', 'string', 'min:20', 'max:5000', function (string $attribute, mixed $value, Closure $fail) {
+                if (str_word_count($value, 0, 'áéíóúüñÁÉÍÓÚÜÑ') < 3) {
+                    $fail('Descríbelo con algunas palabras: qué hace el sistema y para quién.');
+                }
+            }],
             'timeframe' => ['required', 'string', 'in:'.implode(',', array_column(ProjectTimeframe::cases(), 'value'))],
         ];
     }
@@ -51,7 +62,26 @@ new #[Title('Cuéntanos qué quieres construir')] #[Layout('components.layouts.a
 
     public function submit(): void
     {
+        // Al bot se le muestra la misma confirmación que a una persona, para
+        // que no tenga cómo saber que su envío se descartó.
+        if ($this->website !== '') {
+            $this->reset('name', 'email', 'company', 'projectDescription', 'timeframe', 'website');
+            $this->submitted = true;
+
+            return;
+        }
+
         $validated = $this->validate();
+
+        $limite = 'contacto:'.request()->ip();
+
+        if (RateLimiter::tooManyAttempts($limite, 3)) {
+            $this->addError('projectDescription', 'Ya recibimos varios mensajes desde tu conexión. Escríbenos por WhatsApp para seguir.');
+
+            return;
+        }
+
+        RateLimiter::hit($limite, 3600);
 
         ProjectInquiry::create([
             'name' => $validated['name'],
@@ -172,6 +202,11 @@ new #[Title('Cuéntanos qué quieres construir')] #[Layout('components.layouts.a
                 @error('projectDescription')
                     <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
                 @enderror
+            </div>
+
+            <div class="hidden" aria-hidden="true">
+                <label for="website">Sitio web</label>
+                <input id="website" type="text" wire:model="website" tabindex="-1" autocomplete="off" />
             </div>
 
             <div>

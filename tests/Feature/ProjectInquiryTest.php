@@ -112,3 +112,44 @@ test('al enviar, la pantalla confirma el registro y deja WhatsApp como salida', 
         ->assertSee('Tu mensaje quedó registrado')
         ->assertSee('Continuar por WhatsApp');
 });
+
+// --- Protección contra bots ---
+
+test('un envío que llena el campo oculto no se guarda, pero ve la misma confirmación', function () {
+    Livewire::test('pages::contact.index')
+        ->set('name', 'ElmTLrQBovuJVJOnnI')
+        ->set('email', 'bot@example.com')
+        ->set('website', 'https://spam.example')
+        ->set('projectDescription', 'Un sistema para controlar las salidas de tours y sus cupos.')
+        ->set('timeframe', ProjectTimeframe::AsSoonAsPossible->value)
+        ->call('submit')
+        ->assertSet('submitted', true);
+
+    $this->assertDatabaseCount('project_inquiries', 0);
+});
+
+test('una descripción sin palabras no se guarda', function () {
+    Livewire::test('pages::contact.index')
+        ->set('name', 'Bot')
+        ->set('email', 'bot@example.com')
+        ->set('projectDescription', 'VmtFxrcnKdbJSvIYnueq')
+        ->set('timeframe', ProjectTimeframe::AsSoonAsPossible->value)
+        ->call('submit')
+        ->assertHasErrors('projectDescription');
+
+    $this->assertDatabaseCount('project_inquiries', 0);
+});
+
+test('después de tres envíos en una hora desde la misma conexión, el cuarto no se guarda', function () {
+    foreach (range(1, 4) as $intento) {
+        $componente = Livewire::test('pages::contact.index')
+            ->set('name', 'Ana López')
+            ->set('email', "ana{$intento}@example.com")
+            ->set('projectDescription', 'Un sistema para controlar las salidas de tours y sus cupos.')
+            ->set('timeframe', ProjectTimeframe::NextThreeMonths->value)
+            ->call('submit');
+    }
+
+    $componente->assertHasErrors('projectDescription');
+    $this->assertDatabaseCount('project_inquiries', 3);
+});

@@ -1,5 +1,6 @@
 <x-layouts.app :isStatic="true" :whatsappUrl="route('blog.show', $post->slug)">
     <x-slot:title>{{ $post->title }} — Urano Dev</x-slot:title>
+    <x-slot:url>{{ route('blog.show', $post->slug) }}</x-slot:url>
     <x-slot:description>{{ $post->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($post->content), 200) }}</x-slot:description>
     @if ($post->cover_image)
         <x-slot:image>{{ asset('storage/' . $post->cover_image) }}</x-slot:image>
@@ -30,6 +31,19 @@
 
         <div class="post-content text-base text-frost-dark leading-relaxed">
             {!! $content !!}
+        </div>
+
+        <div class="mt-12 p-6 border border-frost-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4" data-test="post-whatsapp-cta">
+            <div>
+                <p class="font-bold text-frost-dark">¿Tu negocio necesita algo parecido?</p>
+                <p class="text-sm text-frost-muted mt-1">Cuéntame qué quieres resolver y revisamos tu caso.</p>
+            </div>
+            <a href="https://wa.me/{{ config('services.whatsapp.number') }}?text={{ urlencode('quiero saber más de '.route('blog.show', $post->slug)) }}"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="shrink-0 bg-frost-dark text-white font-semibold text-sm px-6 py-3 hover:bg-opacity-90 transition text-center">
+                Escribir por WhatsApp
+            </a>
         </div>
 
         @if ($post->author)
@@ -68,5 +82,8 @@
         .post-content blockquote { border-left: 4px solid var(--color-frost-border); padding-left: 1rem; color: var(--color-frost-muted); font-style: italic; margin-bottom: 1.5rem; }
         .post-content pre { background: var(--color-frost-light); border: 1px solid var(--color-frost-border); padding: 1rem; overflow-x: auto; border-radius: 6px; margin-bottom: 1.5rem; }
         .post-content code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+        .post-content a { color: var(--color-frost-dark); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+        .post-content a:hover { color: var(--color-frost-muted); }
+        .post-content a:has(img) { text-decoration: none; }
     </style>
 </x-layouts.app>

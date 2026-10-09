@@ -214,3 +214,48 @@ test('it includes the author section with avatar and filled biography', function
     expect($htmlContent)->toContain('storage/avatars/bob.jpg');
     expect($htmlContent)->not->toContain('data-test="author-avatar-placeholder"');
 });
+
+test('los enlaces del artículo se distinguen y cierra con un llamado a WhatsApp', function () {
+    config(['services.whatsapp.number' => '525500000000']);
+
+    $post = Post::factory()->create([
+        'user_id' => User::factory()->create()->id,
+        'title' => 'Post con enlace',
+        'slug' => 'post-con-enlace',
+        'content' => 'Lee [la guía](https://example.com).',
+        'status' => 'published',
+    ]);
+
+    $htmlContent = File::get($this->storagePath.'/post-con-enlace.html');
+
+    expect($htmlContent)->toContain('.post-content a {');
+    expect($htmlContent)->toContain('data-test="post-whatsapp-cta"');
+    expect($htmlContent)->toContain('https://wa.me/525500000000?text=');
+    expect($htmlContent)->toContain(urlencode(route('blog.show', $post->slug)));
+});
+
+test('el comando posts:regenerate vuelve a generar los artículos publicados con los datos actuales', function () {
+    $author = User::factory()->create(['bio' => null]);
+
+    Post::factory()->create([
+        'user_id' => $author->id,
+        'slug' => 'publicado',
+        'content' => 'Contenido',
+        'status' => 'published',
+    ]);
+    Post::factory()->create([
+        'user_id' => $author->id,
+        'slug' => 'borrador',
+        'content' => 'Contenido',
+        'status' => 'draft',
+    ]);
+
+    $author->update(['bio' => 'Biografía nueva del autor.']);
+
+    $this->artisan('posts:regenerate')
+        ->expectsOutputToContain('1 artículo')
+        ->assertSuccessful();
+
+    expect(File::get($this->storagePath.'/publicado.html'))->toContain('Biografía nueva del autor.');
+    expect(File::exists($this->storagePath.'/borrador.html'))->toBeFalse();
+});

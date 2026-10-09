@@ -6,8 +6,9 @@
     @php
         /*
          * Lo que ven LinkedIn, WhatsApp y los buscadores al compartir la página.
-         * Cada vista puede mandar los slots title, description e image; lo que
-         * no mande cae en los datos del sitio.
+         * Cada vista puede mandar los slots title, description, image y url; lo
+         * que no mande cae en los datos del sitio. Los artículos del blog se
+         * generan fuera de una petición web, así que mandan su url.
          */
         $limpio = fn ($valor) => $valor instanceof \Illuminate\Contracts\Support\Htmlable
             ? trim(preg_replace('/\s+/', ' ', $valor->toHtml()))
@@ -17,16 +18,17 @@
         $pageDescription = new \Illuminate\Support\HtmlString($limpio($description ?? '')
             ?: 'Software a la medida para PYMEs y empresas turísticas: reservaciones, facturación CFDI 4.0, pagos en línea e integraciones con los sistemas que ya usas.');
         $pageImage = new \Illuminate\Support\HtmlString($limpio($image ?? '') ?: asset('images/og/urano-dev.png'));
+        $pageUrl = new \Illuminate\Support\HtmlString($limpio($url ?? '') ?: url()->current());
     @endphp
     <title>{{ $pageTitle }}</title>
     <meta name="description" content="{{ $pageDescription }}">
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ $pageUrl }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Urano Dev">
     <meta property="og:locale" content="es_MX">
     <meta property="og:title" content="{{ $pageTitle }}">
     <meta property="og:description" content="{{ $pageDescription }}">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ $pageUrl }}">
     <meta property="og:image" content="{{ $pageImage }}">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">

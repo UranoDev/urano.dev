@@ -69,6 +69,11 @@ set -e
     php artisan view:clear
     php artisan config:clear
 
+    # Los artículos del blog son HTML estático que se escribe al guardarlos:
+    # sin esto, un cambio de layout o de la biografía no les llega.
+    echo "→ Artículos del blog"
+    php artisan posts:regenerate
+
     # El servidor no muestra versión en ningún lado: el commit publicado es la
     # forma de confirmar que este despliegue sí aterrizó.
     echo "→ Publicado: $(git log --oneline -1)"
