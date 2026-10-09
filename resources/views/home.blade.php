@@ -2,6 +2,9 @@
     <x-slot:title>
         Urano Dev | Tecnología y Soluciones de Software para PYMEs y Turismo
     </x-slot:title>
+    <x-slot:description>
+        Desarrollamos soluciones tecnológicas a la medida para PYMEs y empresas turísticas: reservaciones, facturación CFDI 4.0 y pagos en línea.
+    </x-slot:description>
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-lg text-center md:text-left">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div class="md:col-span-8">

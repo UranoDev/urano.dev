@@ -1,5 +1,9 @@
 <x-layouts.app :isStatic="true" :whatsappUrl="route('blog.show', $post->slug)">
     <x-slot:title>{{ $post->title }} — Urano Dev</x-slot:title>
+    <x-slot:description>{{ $post->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($post->content), 200) }}</x-slot:description>
+    @if ($post->cover_image)
+        <x-slot:image>{{ asset('storage/' . $post->cover_image) }}</x-slot:image>
+    @endif
 
     <article class="max-w-4xl mx-auto px-fluid-sm py-fluid-md">
         <header class="mb-8 border-b border-frost-border pb-8">

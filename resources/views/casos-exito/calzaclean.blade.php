@@ -2,6 +2,7 @@
     <x-slot:title>
         {{ $caso['meta_title'] }}
     </x-slot:title>
+    <x-slot:description>{{ $caso['resumen'] }}</x-slot:description>
 
     {{-- Portada del caso --}}
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-lg">

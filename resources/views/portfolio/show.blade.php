@@ -2,6 +2,10 @@
     <x-slot:title>
         {{ $project->title }} | Portafolio | Urano Dev
     </x-slot:title>
+    <x-slot:description>{{ $project->tagline }}</x-slot:description>
+    @if ($project->featuredScreenshot())
+        <x-slot:image>{{ $project->featuredScreenshot()->url() }}</x-slot:image>
+    @endif
 
     <section class="max-w-6xl mx-auto px-fluid-sm pt-fluid-lg pb-8">
         <x-portfolio.project-card :project="$project" :linkable="false" />

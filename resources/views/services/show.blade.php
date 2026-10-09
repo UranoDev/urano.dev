@@ -2,6 +2,7 @@
     <x-slot:title>
         {{ $service->meta_title }}
     </x-slot:title>
+    <x-slot:description>{{ $service->hero_desc }}</x-slot:description>
 
     <!-- 1. Hero del Servicio -->
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-lg text-center md:text-left">

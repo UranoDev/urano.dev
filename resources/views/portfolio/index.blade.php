@@ -2,6 +2,10 @@
     <x-slot:title>
         Portafolio | Urano Dev
     </x-slot:title>
+    <x-slot:description>
+        Proyectos en producción: qué resuelve cada uno, con qué se construyó y capturas del sitio real.
+    </x-slot:description>
+    <x-slot:image>{{ asset('images/og/portafolio.png') }}</x-slot:image>
 
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-lg text-center md:text-left">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">

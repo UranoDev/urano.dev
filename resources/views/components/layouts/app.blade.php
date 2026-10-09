@@ -3,7 +3,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'Frost Laravel Theme' }}</title>
+    @php
+        /*
+         * Lo que ven LinkedIn, WhatsApp y los buscadores al compartir la página.
+         * Cada vista puede mandar los slots title, description e image; lo que
+         * no mande cae en los datos del sitio.
+         */
+        $limpio = fn ($valor) => $valor instanceof \Illuminate\Contracts\Support\Htmlable
+            ? trim(preg_replace('/\s+/', ' ', $valor->toHtml()))
+            : e(trim(preg_replace('/\s+/', ' ', (string) $valor)));
+
+        $pageTitle = new \Illuminate\Support\HtmlString($limpio($title ?? '') ?: 'Urano Dev');
+        $pageDescription = new \Illuminate\Support\HtmlString($limpio($description ?? '')
+            ?: 'Software a la medida para PYMEs y empresas turísticas: reservaciones, facturación CFDI 4.0, pagos en línea e integraciones con los sistemas que ya usas.');
+        $pageImage = new \Illuminate\Support\HtmlString($limpio($image ?? '') ?: asset('images/og/urano-dev.png'));
+    @endphp
+    <title>{{ $pageTitle }}</title>
+    <meta name="description" content="{{ $pageDescription }}">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Urano Dev">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ $pageImage }}">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
