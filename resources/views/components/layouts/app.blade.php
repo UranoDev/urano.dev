@@ -17,7 +17,7 @@
         $pageTitle = new \Illuminate\Support\HtmlString($limpio($title ?? '') ?: 'Urano Dev');
         $pageDescription = new \Illuminate\Support\HtmlString($limpio($description ?? '')
             ?: 'Software a la medida para PYMEs y empresas turísticas: reservaciones, facturación CFDI 4.0, pagos en línea e integraciones con los sistemas que ya usas.');
-        $pageImage = new \Illuminate\Support\HtmlString($limpio($image ?? '') ?: asset('images/og/urano-dev.png'));
+        $pageImage = new \Illuminate\Support\HtmlString($limpio($image ?? '') ?: asset('images/og/urano-dev-2x.png'));
         $pageUrl = new \Illuminate\Support\HtmlString($limpio($url ?? '') ?: url()->current());
         $pageAuthor = new \Illuminate\Support\HtmlString($limpio($author ?? '') ?: 'Urano Gonzalez');
         // Los artículos mandan su fecha de publicación; con ella la página se

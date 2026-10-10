@@ -13,7 +13,7 @@ test('la portada trae las etiquetas de vista previa con su título, descripción
     $response->assertSee('<meta property="og:title" content="Urano Dev | Tecnología y Soluciones de Software para PYMEs y Turismo">', false);
     $response->assertSee('<meta property="og:description" content="Desarrollamos soluciones tecnológicas a la medida', false);
     $response->assertSee('<meta name="description" content="Desarrollamos soluciones tecnológicas a la medida', false);
-    $response->assertSee('<meta property="og:image" content="'.asset('images/og/urano-dev.png').'">', false);
+    $response->assertSee('<meta property="og:image" content="'.asset('images/og/urano-dev-2x.png').'">', false);
     $response->assertSee('<meta property="og:url" content="'.url('/').'">', false);
     $response->assertSee('<meta name="twitter:card" content="summary_large_image">', false);
 });
@@ -30,7 +30,7 @@ test('el portafolio comparte su propia imagen', function () {
     $response = $this->get(route('portfolio.index'));
 
     $response->assertOk();
-    $response->assertSee('<meta property="og:image" content="'.asset('images/og/portafolio.png').'">', false);
+    $response->assertSee('<meta property="og:image" content="'.asset('images/og/portafolio-2x.png').'">', false);
     $response->assertSee('<meta property="og:title" content="Portafolio | Urano Dev">', false);
 });
 

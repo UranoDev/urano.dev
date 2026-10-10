@@ -5,7 +5,7 @@
     <x-slot:description>
         Proyectos de software a la medida en producción: qué resuelve cada uno, con qué tecnología se construyó y capturas del sitio real.
     </x-slot:description>
-    <x-slot:image>{{ asset('images/og/portafolio.png') }}</x-slot:image>
+    <x-slot:image>{{ asset('images/og/portafolio-2x.png') }}</x-slot:image>
 
     <section class="max-w-6xl mx-auto px-fluid-sm py-fluid-lg text-center md:text-left">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
