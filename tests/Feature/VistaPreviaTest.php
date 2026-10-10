@@ -116,3 +116,7 @@ test('el pie de página enlaza al canal de Urano Dev Labs', function () {
         ->assertSee('href="https://www.youtube.com/@uranodevlabs"', false)
         ->assertSee('Urano Dev Labs en YouTube');
 });
+
+test('la página de precios de la plantilla ya no existe', function () {
+    $this->get('/pricing')->assertNotFound();
+});

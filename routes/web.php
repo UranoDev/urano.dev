@@ -47,9 +47,6 @@ Route::get('/nosotros', function () {
 
     return view('about', compact('team'));
 })->name('nosotros');
-Route::get('/pricing', function () {
-    return view('pricing');
-});
 
 Route::get('/links', function () {
     $links = Link::where('is_active', true)->with('owner')->orderBy('sort_order')->orderBy('id')->get();
