@@ -109,3 +109,10 @@ test('las descripciones para compartir tienen al menos 100 caracteres', function
 test('el sitio declara a su autor', function () {
     $this->get('/')->assertOk()->assertSee('<meta name="author" content="Urano Gonzalez">', false);
 });
+
+test('el pie de página enlaza al canal de Urano Dev Labs', function () {
+    $this->get('/')
+        ->assertOk()
+        ->assertSee('href="https://www.youtube.com/@uranodevlabs"', false)
+        ->assertSee('Urano Dev Labs en YouTube');
+});
