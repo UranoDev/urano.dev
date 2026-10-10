@@ -276,3 +276,20 @@ test('las etiquetas de vista previa del artículo llevan la dirección completa'
     expect($htmlContent)->toContain('<meta property="og:image" content="'.url('/storage/posts/portada.png').'">');
     expect($htmlContent)->toContain('href="/blog"');
 });
+
+test('un artículo se declara como artículo, con su fecha y su autor', function () {
+    $post = Post::factory()->create([
+        'user_id' => User::factory()->create(['name' => 'Urano Gonzalez'])->id,
+        'slug' => 'articulo-con-fecha',
+        'content' => 'Contenido',
+        'status' => 'published',
+        'published_at' => '2026-10-09 18:00:00',
+    ]);
+
+    $htmlContent = File::get($this->storagePath.'/articulo-con-fecha.html');
+
+    expect($htmlContent)->toContain('<meta property="og:type" content="article">');
+    expect($htmlContent)->toContain('<meta property="article:published_time" content="'.$post->published_at->toIso8601String().'">');
+    expect($htmlContent)->toContain('<meta property="article:author" content="Urano Gonzalez">');
+    expect($htmlContent)->toContain('<meta name="author" content="Urano Gonzalez">');
+});

@@ -1,6 +1,12 @@
 <x-layouts.app :isStatic="true" :whatsappUrl="route('blog.show', $post->slug)">
     <x-slot:title>{{ $post->title }} — Urano Dev</x-slot:title>
     <x-slot:url>{{ route('blog.show', $post->slug) }}</x-slot:url>
+    @if ($post->published_at)
+        <x-slot:published>{{ $post->published_at->toIso8601String() }}</x-slot:published>
+    @endif
+    @if ($post->author)
+        <x-slot:author>{{ $post->author->name }}</x-slot:author>
+    @endif
     <x-slot:description>{{ $post->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($post->content), 200) }}</x-slot:description>
     @if ($post->cover_image)
         <x-slot:image>{{ asset('storage/' . $post->cover_image) }}</x-slot:image>

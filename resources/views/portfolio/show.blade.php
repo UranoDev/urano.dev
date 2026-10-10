@@ -2,7 +2,8 @@
     <x-slot:title>
         {{ $project->title }} | Portafolio | Urano Dev
     </x-slot:title>
-    <x-slot:description>{{ $project->tagline }}</x-slot:description>
+    {{-- El lema es corto para compartir; la descripción da el contexto completo. --}}
+    <x-slot:description>{{ \Illuminate\Support\Str::limit($project->description ?: $project->tagline, 200) }}</x-slot:description>
     @if ($project->featuredScreenshot())
         <x-slot:image>{{ $project->featuredScreenshot()->url() }}</x-slot:image>
     @endif

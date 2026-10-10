@@ -3,7 +3,7 @@
         Portafolio | Urano Dev
     </x-slot:title>
     <x-slot:description>
-        Proyectos en producción: qué resuelve cada uno, con qué se construyó y capturas del sitio real.
+        Proyectos de software a la medida en producción: qué resuelve cada uno, con qué tecnología se construyó y capturas del sitio real.
     </x-slot:description>
     <x-slot:image>{{ asset('images/og/portafolio.png') }}</x-slot:image>
 

@@ -19,11 +19,22 @@
             ?: 'Software a la medida para PYMEs y empresas turísticas: reservaciones, facturación CFDI 4.0, pagos en línea e integraciones con los sistemas que ya usas.');
         $pageImage = new \Illuminate\Support\HtmlString($limpio($image ?? '') ?: asset('images/og/urano-dev.png'));
         $pageUrl = new \Illuminate\Support\HtmlString($limpio($url ?? '') ?: url()->current());
+        $pageAuthor = new \Illuminate\Support\HtmlString($limpio($author ?? '') ?: 'Urano Gonzalez');
+        // Los artículos mandan su fecha de publicación; con ella la página se
+        // declara como artículo.
+        $pagePublished = $limpio($published ?? '');
     @endphp
     <title>{{ $pageTitle }}</title>
     <meta name="description" content="{{ $pageDescription }}">
+    <meta name="author" content="{{ $pageAuthor }}">
     <link rel="canonical" href="{{ $pageUrl }}">
-    <meta property="og:type" content="website">
+    @if ($pagePublished)
+        <meta property="og:type" content="article">
+        <meta property="article:published_time" content="{{ new \Illuminate\Support\HtmlString($pagePublished) }}">
+        <meta property="article:author" content="{{ $pageAuthor }}">
+    @else
+        <meta property="og:type" content="website">
+    @endif
     <meta property="og:site_name" content="Urano Dev">
     <meta property="og:locale" content="es_MX">
     <meta property="og:title" content="{{ $pageTitle }}">

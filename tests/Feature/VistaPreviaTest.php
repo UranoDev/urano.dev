@@ -34,15 +34,18 @@ test('el portafolio comparte su propia imagen', function () {
     $response->assertSee('<meta property="og:title" content="Portafolio | Urano Dev">', false);
 });
 
-test('un proyecto del portafolio comparte su lema y su captura destacada', function () {
-    $project = PortfolioProject::factory()->create(['tagline' => 'Reseñas de Google desde el mostrador']);
+test('un proyecto del portafolio comparte su descripción y su captura destacada', function () {
+    $project = PortfolioProject::factory()->create([
+        'tagline' => 'Reseñas de Google desde el mostrador',
+        'description' => 'Un dispositivo que un negocio deja en el mostrador para que el cliente deje su reseña en Google.',
+    ]);
     PortfolioProjectScreenshot::factory()->for($project)->create(['path' => 'images/portfolio/x/otra.png', 'is_featured' => false, 'sort_order' => 1]);
     PortfolioProjectScreenshot::factory()->for($project)->create(['path' => 'images/portfolio/x/hero.png', 'is_featured' => true, 'sort_order' => 2]);
 
     $response = $this->get(route('portfolio.show', $project));
 
     $response->assertOk();
-    $response->assertSee('<meta property="og:description" content="Reseñas de Google desde el mostrador">', false);
+    $response->assertSee('<meta property="og:description" content="Un dispositivo que un negocio deja en el mostrador para que el cliente deje su reseña en Google.">', false);
     $response->assertSee('<meta property="og:image" content="'.asset('images/portfolio/x/hero.png').'">', false);
 });
 
@@ -86,4 +89,23 @@ test('los encabezados de las páginas públicas no saltan niveles', function () 
             $anterior = $nivel;
         }
     }
+});
+
+test('las descripciones para compartir tienen al menos 100 caracteres', function () {
+    $project = PortfolioProject::factory()->create([
+        'tagline' => 'Lema corto del proyecto',
+        'description' => str_repeat('Descripción larga del proyecto con suficiente detalle. ', 8),
+    ]);
+
+    foreach (['/', '/portafolio', route('portfolio.show', $project), '/servicios', '/nosotros', '/contacto', '/blog'] as $pagina) {
+        $html = $this->get($pagina)->assertOk()->getContent();
+
+        preg_match('/<meta property="og:description" content="([^"]*)">/', $html, $m);
+
+        expect(mb_strlen(html_entity_decode($m[1] ?? '')))->toBeGreaterThanOrEqual(100, "$pagina tiene una descripción corta");
+    }
+});
+
+test('el sitio declara a su autor', function () {
+    $this->get('/')->assertOk()->assertSee('<meta name="author" content="Urano Gonzalez">', false);
 });
